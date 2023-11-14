@@ -369,7 +369,7 @@ DWC_Acc_CreateFriendKey( int gs_profile_id,
 {
     MATHCRC8Table table;
     u32 code[2];
-    int crc;
+    u32 crc;
 
     code[0] = (u32)gs_profile_id;
     code[1] = gamecode;

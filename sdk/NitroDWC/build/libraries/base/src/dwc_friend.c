@@ -147,7 +147,7 @@ u8 DWC_GetFriendStatusSC(const DWCFriendData* friendData, u8* maxEntry, u8* numE
                 len = DWC_GetCommonValueString(DWC_GP_SSTR_KEY_MATCH_SC_MAX,
                                                valueStr,
                                                status.statusString, '/');
-                if (len > 0) *maxEntry = (u8)strtoul(valueStr, NULL, 10);
+                if (len) *maxEntry = (u8)strtoul(valueStr, NULL, 10);
                 else *maxEntry = 0;
             }
 
@@ -156,7 +156,7 @@ u8 DWC_GetFriendStatusSC(const DWCFriendData* friendData, u8* maxEntry, u8* numE
                 len = DWC_GetCommonValueString(DWC_GP_SSTR_KEY_MATCH_SC_NUM,
                                                valueStr,
                                                status.statusString, '/');
-                if (len > 0) *numEntry = (u8)strtoul(valueStr, NULL, 10);
+                if (len) *numEntry = (u8)strtoul(valueStr, NULL, 10);
                 else *numEntry = 0;
             }
         }

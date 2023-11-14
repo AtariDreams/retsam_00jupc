@@ -32,7 +32,7 @@ static MATHRandContext32 stRandContext32 = { 0, 0, 0 };  // 乱数コンテキスト
   戻り値：セットされたkey/value文字列長（NULL終端含まず）
   用途　：key/valueの文字列を指定し、DWC汎用key/value文字列を作成する
  *---------------------------------------------------------------------------*/
-int  DWC_SetCommonKeyValueString(const char* key, const char* value, char* string, char separator)
+size_t  DWC_SetCommonKeyValueString(const char* key, const char* value, char* string, char separator)
 {
 
     SDK_ASSERT(key && value);
@@ -41,7 +41,7 @@ int  DWC_SetCommonKeyValueString(const char* key, const char* value, char* strin
                 "%c%s%c%s",
                 separator, key, separator, value);
 
-    return (int)strlen(string);
+    return strlen(string);
 }
 
 
@@ -54,12 +54,12 @@ int  DWC_SetCommonKeyValueString(const char* key, const char* value, char* strin
   戻り値：key/value文字列が追加された後のkey/value文字列長（NULL終端含まず）
   用途　：key/valueの文字列を既存の文字列に追加する
  *---------------------------------------------------------------------------*/
-int  DWC_AddCommonKeyValueString(const char* key, const char* value, char* string, char separator)
+size_t  DWC_AddCommonKeyValueString(const char* key, const char* value, char* string, char separator)
 {
 
     (void)DWC_SetCommonKeyValueString(key, value, strchr(string, '\0'), separator);
 
-    return (int)strlen(string);
+    return strlen(string);
 }
 
 
@@ -69,22 +69,22 @@ int  DWC_AddCommonKeyValueString(const char* key, const char* value, char* strin
           value     取り出したvalue文字列の格納先ポインタ。
           string    key/value型文字列
           separator 各文字列を分ける区切り文字
-  戻り値：value文字列長（NULL終端含まず）。存在しないkeyを指定した場合は-1を返す
+  戻り値：value文字列長（NULL終端含まず）。存在しないkeyを指定した場合は0を返す
   用途　：指定した区切り文字で区切られたDWC汎用key/value型文字列から、
           指定されたkey文字列に対応するvalue文字列を取得する。
  *---------------------------------------------------------------------------*/
-int  DWC_GetCommonValueString(const char* key, char* value, const char* string, char separator)
+size_t  DWC_GetCommonValueString(const char* key, char* value, const char* string, char separator)
 {
     const char* pSrcBegin;
     char* pSrcEnd;
-    int len;
+    size_t len;
 
     SDK_ASSERT(key);
 
-    if (!value) return -1;
+    if (!value) return 0;
 
     pSrcBegin = strchr(string, separator);  // key/value文字列の開始ポインタを取得
-    if (!pSrcBegin) return -1;
+    if (!pSrcBegin) return 0;
 
     while (1){
         if (!strncmp(pSrcBegin+1, key, strlen(key)) &&
@@ -94,20 +94,20 @@ int  DWC_GetCommonValueString(const char* key, char* value, const char* string, 
 
         // 次のkeyを探す。
         pSrcBegin = strchr(pSrcBegin+1, separator);
-        if (!pSrcBegin) return -1;
+        if (!pSrcBegin) return 0;
         pSrcBegin = strchr(pSrcBegin+1, separator);
-        if (!pSrcBegin) return -1;
+        if (!pSrcBegin) return 0;
     }
 
     // valueの開始ポインタを取得
     pSrcBegin = strchr(pSrcBegin+1, separator);
-    if (!pSrcBegin) return -1;
+    if (!pSrcBegin) return 0;
     pSrcBegin++;
 
     // valueの文字列長を取得
     pSrcEnd = strchr(pSrcBegin, separator);
-    if (pSrcEnd) len = (int)(pSrcEnd-pSrcBegin);
-    else len = (int)strlen(pSrcBegin);
+    if (pSrcEnd) len = (pSrcEnd-pSrcBegin);
+    else len = strlen(pSrcBegin);
 
     strncpy(value, pSrcBegin, (u32)len);  // value文字列をコピー
     value[len] = '\0';
@@ -121,7 +121,7 @@ int  DWC_GetCommonValueString(const char* key, char* value, const char* string, 
 //----------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
   32bit乱数値取得関数
-  引数　：max 取得する乱数の最大値。ここで設定した max-1 が得られる乱数の
+  引数　：max 取得する乱数の最大値。ここで設定した max0 が得られる乱数の
               最大値となる。0を指定した場合にはすべての範囲の数が得られる。
   戻り値：32bit乱数値
   用途　：関数MATH_Rand32()で生成した32bit乱数値を取得する

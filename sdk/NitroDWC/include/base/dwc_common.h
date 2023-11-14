@@ -92,7 +92,7 @@ extern "C" {
   戻り値：セットされたkey/value文字列長（NULL終端含まず）
   用途　：key/valueの文字列を指定し、DWC汎用key/value文字列を作成する
  *---------------------------------------------------------------------------*/
-extern int  DWC_SetCommonKeyValueString(const char* key, const char* value, char* string, char separator);
+extern size_t  DWC_SetCommonKeyValueString(const char* key, const char* value, char* string, char separator);
 
 
 /*---------------------------------------------------------------------------*
@@ -104,7 +104,7 @@ extern int  DWC_SetCommonKeyValueString(const char* key, const char* value, char
   戻り値：key/value文字列が追加された後のkey/value文字列長（NULL終端含まず）
   用途　：key/valueの文字列を既存の文字列に追加する
  *---------------------------------------------------------------------------*/
-extern int  DWC_AddCommonKeyValueString(const char* key, const char* value, char* string, char separator);
+extern size_t  DWC_AddCommonKeyValueString(const char* key, const char* value, char* string, char separator);
 
 
 /*---------------------------------------------------------------------------*
@@ -117,7 +117,7 @@ extern int  DWC_AddCommonKeyValueString(const char* key, const char* value, char
   用途　：指定した区切り文字で区切られたDWC汎用key/value型文字列から、
           指定されたkey文字列に対応するvalue文字列を取得する。
  *---------------------------------------------------------------------------*/
-extern int  DWC_GetCommonValueString(const char* key, char* value, const char* string, char separator);
+extern size_t  DWC_GetCommonValueString(const char* key, char* value, const char* string, char separator);
 
 
 //----------------------------------------------------------------------------

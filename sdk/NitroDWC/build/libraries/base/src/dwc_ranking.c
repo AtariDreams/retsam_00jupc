@@ -851,10 +851,8 @@ DWCRnkError	DWC_RnkResGetRow(	DWCRnkData* out,
 	//
 	ptr = &res.listheader->rankingdata;
 
-	while( index-- > 0 ){
-
+	for(;index;index--){
 		ptr = (DWCRnkData*)( ((u8*)&ptr->userdata) + ptr->size );
-
 	}
 
 	// メモリーアクセスオーバーの検知
