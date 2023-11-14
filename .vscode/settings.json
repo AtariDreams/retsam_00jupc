@@ -1,6 +1,7 @@
 {
     "files.encoding": "shiftjis",
     "files.associations": {
-        "mslconfig": "c"
+        "mslconfig": "c",
+        "cstdlib": "c"
     }
 }
