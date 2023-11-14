@@ -2316,7 +2316,7 @@ void * BINPUT_SystemInit(ARCHANDLE* hdl_bg, ARCHANDLE* hdl_obj, BATTLE_WORK *bw,
 	{
 		NNSG2dScreenData *scrnData;
 		void *arc_data;
-		int i;
+		u32 i;
 		int scrn_data_id;
 		
 		for(i = 0; i < SCRNBUF_MAX; i++){
@@ -2420,7 +2420,7 @@ void * BINPUT_SystemInit(ARCHANDLE* hdl_bg, ARCHANDLE* hdl_obj, BATTLE_WORK *bw,
 //--------------------------------------------------------------
 void BINPUT_SystemFree(BI_PARAM_PTR bip)
 {
-	int i;
+	u32 i;
 	
 	if(bip->cursor_disp != NULL){
 		bip->cursor_disp->on_off = bip->decend_key;
