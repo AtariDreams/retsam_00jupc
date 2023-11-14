@@ -1,3 +1,4 @@
+#encoding: Shift_JIS
 DEFAULT_LSFFILE		= "default.lsf"
 MAKE_PROG_FILE  	= "make_prog_files"
 OUTPUT_LSFFILE  	= "main.lsf"
