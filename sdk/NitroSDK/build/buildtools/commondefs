@@ -686,16 +686,6 @@ ifndef NITROSDK_COMMONDEFS_
 NITROSDK_COMMONDEFS_ = TRUE
 
 #
-# Check make version
-#
-ifneq	($(MAKE_VERSION),3.80)
-__version:
-	@echo ---- Sorry, this makefile is for \'make\' version 3.80
-	@make -v
-	@exit 1
-endif
-
-#
 # SDK root directory
 #
 
