@@ -55,28 +55,19 @@
 
 int _MSL_CDECL (abs)(int n)
 {
-	if (n < 0)
-		return(-n);
-	else
-		return(n);
+	return (n < 0) ? -n : n;
 }
 
 long _MSL_CDECL (labs)(long n)
 {
-	if (n < 0)
-		return(-n);
-	else
-		return(n);
+	return (n < 0) ? -n : n;
 }
 
 #if (_MSL_C99 || defined( __cplusplus))
 #if _MSL_LONGLONG 
 long long _MSL_CDECL (llabs)(long long n)
 {
-	if (n < 0)
-		return(-n);
-	else
-		return(n);
+	return (n < 0) ? -n : n;
 }
 #endif	/* _MSL_LONGLONG	*/
 #endif  /* _MSL_C99 */
