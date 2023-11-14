@@ -350,7 +350,7 @@ void BCURSOR_ExOFF(BCURSOR_PTR cursor)
 static void BCURSOR_ObjectUpdate(TCB_PTR tcb, void *work)
 {
 	BCURSOR_WORK *cursor = work;
-	int i;
+	u32 i;
 	
 	if(CATS_ObjectEnableGetCap(cursor->cap[BCURSOR_ACT_LU]) == CATS_ENABLE_FALSE){
 		return;
