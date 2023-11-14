@@ -4573,7 +4573,7 @@ static int DWCi_SendResvCommandToFriend(BOOL delay, BOOL init, int resendPid)
                            (DWCi_GetMatchCnt()->friendCount < DWCi_GetMatchCnt()->friendIdxListLen-1) ? DWCi_GetMatchCnt()->friendCount+1 : 0;
     int  buddyIdx;
     int  initFinished = 0;
-    int  versionLen, numEntryLen, distantFriendLen;
+    u32  versionLen, numEntryLen, distantFriendLen;
     int  i;
     GPBuddyStatus status;
     GPResult gpResult;
@@ -4645,7 +4645,7 @@ static int DWCi_SendResvCommandToFriend(BOOL delay, BOOL init, int resendPid)
                                              status.statusString,
                                              '/');
 
-                if ((versionLen > 0) && (numEntryLen > 0) && (distantFriendLen > 0) &&
+                if (versionLen && numEntryLen && distantFriendLen &&
                     (strtoul(version, NULL, 10) == DWC_MATCHING_VERSION) &&
                     (strtoul(numEntry, NULL, 10) == DWCi_GetMatchCnt()->qr2NumEntry)){
                     // 予約送信先サーバとして決定

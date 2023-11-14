@@ -135,7 +135,7 @@ u8 DWC_GetFriendStatus(const DWCFriendData* friendData, char* statusString)
 u8 DWC_GetFriendStatusSC(const DWCFriendData* friendData, u8* maxEntry, u8* numEntry, char* statusString)
 {
     char valueStr[4];
-    int  len;
+    u32  len;
     GPBuddyStatus status;
 
     // GPBudyStatus‚ðŽæ“¾‚·‚é
