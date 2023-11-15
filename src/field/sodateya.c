@@ -1326,7 +1326,7 @@ void PokemonTamagoSet(POKEMON_PARAM *pp, u16 monsno, SODATEYA_WORK *sodateya, u3
 #endif
 	// もしも育て屋に預けているポケモンがレアの生まれやすい状態（外国のポケモンが預けてある）なら
 	if(SodateyaWork_GetRareFlag(sodateya)){
-		int i;
+		u32 i;
 
 		OS_Printf("育て屋レアルーチン発動\n");
 		// 今持ってる乱数がレアか。
@@ -2093,9 +2093,8 @@ static void Tamago2Pokemon( POKEMON_PARAM *p, int heap )
 		OS_Printf("マナフィー孵化処理\n");
 		if (getplace == PlaceName_IndexToParamNumber( PLACENAME_TYPE_EXT_EVENT, MAPNAME_RENJA )){
 			// レアじゃなくなるまで乱数をまわす
-			while(PokeRareGetPara( id, personal_rnd)){
-				personal_rnd = gf_fix_rand( personal_rnd );
-			}
+			if (PokeRareGetPara(id,personal_rnd))
+				personal_rnd ^= 0x10000000;
 		}
 	
 	}

@@ -280,7 +280,9 @@ u32 Frontier_PokemonParamMake(B_TOWER_POKEMON* pwd,
 #else
 		//プラチナはタワーも修正する(08.03.17)(この関数ではないので注意！)
 		//データの性格と一致していない"もしくは"レアの時は、ループを回す
-		}while((prd_s.chr!=PokeSeikakuGetRnd(personal_rnd))||(PokeRareGetPara(poke_id,personal_rnd)==TRUE));
+		if (PokeRareGetPara(poke_id,personal_rnd))
+			personal_rnd ^= 0x10000000;
+		}while((prd_s.chr!=PokeSeikakuGetRnd(personal_rnd)));
 #endif
 
 		//OS_Printf( "決定したpersonal_rnd = %d\n", personal_rnd );

@@ -290,9 +290,8 @@ static void Pokemon_ReceiveFunc(FIELDSYS_WORK * fsys, void * slot)
     if(rnd == POKEMON_RND_FULL_RANDOM){		// Š®‘S‚È‚é—”
       ;
     } else if(rnd == POKEMON_RND_EXCEPT_RARE){	// ƒŒƒA‚ğœ‚­—”
-      while(PokeRareGetPara(id, new_rnd)){
-	new_rnd = gf_fix_rand( new_rnd );
-      }
+        if (PokeRareGetPara(id, new_rnd))
+            new_rnd ^= 0x10000000;
     } else {
       new_rnd = rnd;
     }

@@ -542,9 +542,9 @@ void	PokePasoParaSet(POKEMON_PASO_PARAM *ppp,int mons_no,int level,int pow,int r
 
 //IDナンバーセット
 	if(idflag==ID_NO_RARE){
-		do{
-			id=(gf_rand()|(gf_rand()<<16));
-		}while((((id&0xffff0000)>>16)^(id&0xffff)^((rnd&0xffff0000)>>16)^(rnd&0xffff))<8);
+		id=(gf_rand()|(gf_rand()<<16));
+		if ((((id&0xffff0000)>>16)^(id&0xffff)^((rnd&0xffff0000)>>16)^(rnd&0xffff))<8)
+			id ^= 0x10000000;
 	}
 	else if(idflag!=ID_SET){
 		id=0;
