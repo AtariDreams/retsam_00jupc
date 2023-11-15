@@ -5372,8 +5372,7 @@ static	BOOL	ServerZenmetsuCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 			}
 		}
 	}
-	if(((win_lose_flag==FIGHT_WIN)&&(fight_type&FIGHT_TYPE_TRAINER)&&((fight_type&FIGHT_TYPE_SIO)==0))||
-	   ((win_lose_flag==FIGHT_WIN)&&(fight_type&FIGHT_TYPE_TOWER)&&((fight_type&FIGHT_TYPE_SIO)==0))){
+	if((win_lose_flag==FIGHT_WIN)&&(fight_type&(FIGHT_TYPE_TRAINER | FIGHT_TYPE_TOWER))&&((fight_type&FIGHT_TYPE_SIO)==0)){
 		{
 			TRAINER_DATA	*td;
 
