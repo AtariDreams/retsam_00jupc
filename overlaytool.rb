@@ -184,9 +184,14 @@ end
 #オーバーレイのターゲットネームとその番号をテキストに吐き出す
 File.open(OUTPUT_OVERLAYTEXT,"w"){|file|
 	for i in 1..overlay_count-1
-		file.printf( " ID 0x%x = %s\n",i,overlay_name[i+3].downcase.sub(/srcs_overlay_/,""));
+		if overlay_name[i+3]
+			file.printf( " ID 0x%x = %s\n",i,overlay_name[i+3].downcase.sub(/srcs_overlay_/,""))
+		else
+			puts "Warning: overlay_name[#{i+3}] is nil"
+		end
 	end
 }
+
 
 #p overlay_count
 #p overlay_table_num
