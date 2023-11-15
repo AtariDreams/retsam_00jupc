@@ -1,4 +1,4 @@
-#encoding: Shift_JIS
+# encoding: shift_jis
 DEFAULT_LSFFILE		= "default.lsf"
 MAKE_PROG_FILE  	= "make_prog_files"
 OUTPUT_LSFFILE  	= "main.lsf"
@@ -43,11 +43,17 @@ File.open(OUTPUT_LSFFILE,"w"){|file|
 	file.puts("#ここから下はoverlaytool.rbで自動生成されています\n\n")
 }
 
+def clean_invalid_utf8(str)
+	str.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+end
+  
+
 
 #ターゲットになるソースコードの記述ファイルを１行ずつ処理
 File.readlines(MAKE_PROG_FILE).each{ |line|
 	line.chomp!
 
+	line = clean_invalid_utf8(line)
 	#行末の「\」の後ろにスペースが入っていると誤動作するのでチェックする
 	if line.match(MATCH_ERROR) then
 		printf "%d行目： \\マークの後ろにスペースがはいっています。\n",line_count
