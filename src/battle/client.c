@@ -1006,8 +1006,7 @@ static	void	ClientPokemonRefresh(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 		else{
 			speabi=PokeParaGet(pp,ID_PARA_speabino,NULL);
 		}
-		if((prp->waza_no!=WAZANO_IYASINOSUZU)||
-		   ((prp->waza_no==WAZANO_IYASINOSUZU)&&(speabi!=TOKUSYU_BOUON))){
+		if((prp->waza_no!=WAZANO_IYASINOSUZU)|| (speabi!=TOKUSYU_BOUON)){
 			PokeParaPut(pp,ID_PARA_condition,(u8 *)&condition);
 		}
 	}
