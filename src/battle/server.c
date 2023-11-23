@@ -2305,7 +2305,7 @@ static	void	ServerItemCommand(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				sp->msg_work=ITEM_USE_MSG_RECV_MULTI;
 			}
 			else{
-				sp->msg_work=__builtin_ctz(sp->AIWT.AI_ITEM_CONDITION[sp->attack_client>>1]);
+				sp->msg_work=MATH_CTZ(sp->AIWT.AI_ITEM_CONDITION[sp->attack_client>>1]);
 			}
 			seq_no=SUB_SEQ_TRUSE_RECV_CONDITION;
 			break;
@@ -3116,7 +3116,7 @@ static	BOOL	ServerStatusCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 			break;
 		case SSC_MEROMERO:	//メロメロチェック
 			if(sp->psp[sp->attack_client].condition2&CONDITION2_MEROMERO){
-				sp->client_work=__builtin_ctz((sp->psp[sp->attack_client].condition2&CONDITION2_MEROMERO)>>MEROMERO_SHIFT);
+				sp->client_work=MATH_CTZ((sp->psp[sp->attack_client].condition2&CONDITION2_MEROMERO)>>MEROMERO_SHIFT);
 				if(BattleWorkRandGet(bw)&1){
 					ST_ServerSequenceLoad(sp,ARC_SUB_SEQ,SUB_SEQ_MEROMERO_KEEP);
 					sp->next_server_seq_no=sp->server_seq_no;
@@ -4615,7 +4615,7 @@ static	void	ServerLoopCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 static	void	ServerJibakuEffect(BATTLE_WORK *bw,SERVER_PARAM *sp)
 {
 	if(sp->server_status_flag&SERVER_STATUS_FLAG_JIBAKU_MASK){
-		sp->kizetsu_client=__builtin_ctz((sp->server_status_flag&SERVER_STATUS_FLAG_JIBAKU_MASK)>>SERVER_STATUS_FLAG_JIBAKU_SHIFT);
+		sp->kizetsu_client=MATH_CTZ((sp->server_status_flag&SERVER_STATUS_FLAG_JIBAKU_MASK)>>SERVER_STATUS_FLAG_JIBAKU_SHIFT);
 		sp->server_status_flag&=SERVER_STATUS_FLAG_JIBAKU_MASK_OFF;
 //		sp->server_status_flag2|=(1U << sp->kizetsu_client)<<SERVER_STATUS_FLAG2_GET_EXP_SHIFT;
 		ST_ServerSequenceLoad(sp,ARC_SUB_SEQ,SUB_SEQ_JIBAKU_KIZETSU);
@@ -5562,7 +5562,7 @@ static	BOOL	ServerKizetsuCheck(SERVER_PARAM *sp,int next_seq,int no_set_seq,int 
 			client_bit=(1U << sp->psp_agi_work[no])<<SERVER_STATUS_FLAG_KIZETSU_SHIFT;
 		}
 		sp->server_status_flag&=(client_bit^0xffffffff);
-		sp->kizetsu_client=__builtin_ctz(client_bit>>SERVER_STATUS_FLAG_KIZETSU_SHIFT);
+		sp->kizetsu_client=MATH_CTZ(client_bit>>SERVER_STATUS_FLAG_KIZETSU_SHIFT);
 //		sp->server_status_flag2|=(1U << sp->kizetsu_client)<<SERVER_STATUS_FLAG2_GET_EXP_SHIFT;
 		if(flag==SKC_MICHIDURE_OFF){
 			ST_ServerSequenceLoad(sp,ARC_SUB_SEQ,SUB_SEQ_KIZETSU);
@@ -5606,7 +5606,7 @@ static	BOOL	ServerGetExpCheck(SERVER_PARAM *sp,int next_seq,int no_set_seq)
 				client_bit=client_bit<<1;
 			}
 			sp->server_status_flag2&=(client_bit^0xffffffff);
-			sp->kizetsu_client=__builtin_ctz(client_bit>>SERVER_STATUS_FLAG2_GET_EXP_SHIFT);
+			sp->kizetsu_client=MATH_CTZ(client_bit>>SERVER_STATUS_FLAG2_GET_EXP_SHIFT);
 			ST_ServerSequenceLoad(sp,ARC_SUB_SEQ,SUB_SEQ_GET_EXP);
 			sp->server_seq_no=SERVER_WAZA_SEQUENCE_NO;
 			sp->next_server_seq_no=next_seq;
