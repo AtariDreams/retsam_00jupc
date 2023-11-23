@@ -278,9 +278,6 @@ static	u16		PokeParaCheckSum(void *data,u32 size);
 static	void	*PokeParaAdrsGet(POKEMON_PASO_PARAM *ppp,u32 rnd,u8 id);
 static	int		PokeOtherFormMonsNoGet(int mons_no,int form_no);
 
-u32		No2Bit(int no);
-int		Bit2No(u32 bit);
-
 BOOL BattleTowerExPokeCheck_MonsNo( u16 mons );
 BOOL BattleTowerExPokeCheck_PokePara( POKEMON_PARAM * pp );
 
@@ -3589,19 +3586,19 @@ u32		PokeRareRndGet(u32 id)
 
 	for(i=0;i<13;i++){
 		//Bit:1
-		if(id&No2Bit(i)){
+		if(id&(1U << i)){
 			if(gf_rand()&1){
-				rnd_low|=No2Bit(i+3);
+				rnd_low|=(1U << (i+3)));
 			}
 			else{
-				rnd_high|=No2Bit(i+3);
+				rnd_high|=(1U << (i+3)));
 			}
 		}
 		//Bit:0
 		else{
 			if(gf_rand()&1){
-				rnd_low|=No2Bit(i+3);
-				rnd_high|=No2Bit(i+3);
+				rnd_low|=(1U << (i+3)));
+				rnd_high|=(1U << (i+3)));
 			}
 		}
 	}
@@ -5767,7 +5764,7 @@ void	PokerusSetCheck(POKEPARTY *ppt)
 				pos=count;
 			}
 		}while(pos==count);
-		if(PokerusedCheck(ppt,No2Bit(pos))==0){
+		if(PokerusedCheck(ppt,(1U << pos))==0){
 			do{
 				pokerus=gf_rand()&0xff;
 			}while((pokerus&0x07)==0);
@@ -7617,7 +7614,7 @@ static	int	PokeOtherFormMonsNoGet(int mons_no,int form_no)
  * @retval	no=0:0x01 …
  */
 //============================================================================================
-u32	No2Bit(int no)
+u32	(1U << int no)
 {
 	int	i;
 	u32	ret=1;
@@ -7630,28 +7627,6 @@ u32	No2Bit(int no)
 	return ret;
 }
 
-//============================================================================================
-/**
- *	BitをNoに変換(３１まで）
- *
- * @param[in]	bit		変換するナンバー
- *
- * @retval	no=0x01:0…
- */
-//============================================================================================
-int	Bit2No(u32 bit)
-{
-	int	i;
-	u32	mask=1;
-
-	for(i=0;i<32;i++){
-		if(bit&mask){
-			break;
-		}
-		mask<<=1;
-	}
-	return i;
-}
 
 
 //============================================================================================

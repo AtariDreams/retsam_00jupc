@@ -743,9 +743,6 @@ extern	void	FriendCalc(POKEMON_PARAM *pp,u8 id,u16 placeID);
 extern	u32		PokePersonal_LevelCalc( POKEMON_PERSONAL_DATA* personalData, u16 monsno, u32 exp );
 extern	u8		PokePersonal_SexGet( POKEMON_PERSONAL_DATA* personalData, u16 monsno, u32 rnd );
 
-extern	u32		No2Bit(int no);
-extern	int		Bit2No(u32 bit);
-
 extern BOOL BattleTowerExPokeCheck_MonsNo( u16 mons );
 extern BOOL BattleTowerExPokeCheck_PokePara( POKEMON_PARAM * pp );
 extern u16 BattleTowerExPoke_MonsNoGet(u8 idx);

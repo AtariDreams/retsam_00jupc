@@ -1380,7 +1380,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			PokeParaAdd(pp,ID_PARA_pp1+waza_pos,data);
 			if((pos1==sel_mons_no)||(pos2==sel_mons_no)){
 				if(((ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_condition2,NULL)&CONDITION2_HENSHIN)==0)&&
-				  ((ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_wkw_monomane_bit,NULL)&No2Bit(waza_pos))==0)){
+				  ((ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_wkw_monomane_bit,NULL)&(1U << waza_pos))==0)){
 					ST_ServerPokemonServerParamAdd(sp,client_no,ID_PSP_pp1+waza_pos,data);
 				}
 			}
@@ -1395,7 +1395,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 				PokeParaAdd(pp,ID_PARA_pp1+waza_pos,data);
 				if((pos1==sel_mons_no)||(pos2==sel_mons_no)){
 					if(((ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_condition2,NULL)&CONDITION2_HENSHIN)==0)&&
-					  ((ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_wkw_monomane_bit,NULL)&No2Bit(waza_pos))==0)){
+					  ((ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_wkw_monomane_bit,NULL)&(1U << waza_pos))==0)){
 						ST_ServerPokemonServerParamAdd(sp,client_no,ID_PSP_pp1+waza_pos,data);
 					}
 				}
@@ -1588,7 +1588,7 @@ u8		BattleWorkEscCanCheck(BATTLE_WORK *bw,int client_no,u8 no_reshuffle_client)
 	if(((BattleWorkClientTypeGet(bw,client_no)==CLIENT_TYPE_C)&&
 	    (bw->fight_type&FIGHT_TYPE_MULTI)==0)){
 		if(bw->fight_type&FIGHT_TYPE_SIO){
-			if((no_reshuffle_client&No2Bit(BattleWorkPartnerClientNoGet(bw,client_no)))==0){
+			if((no_reshuffle_client&(1U << BattleWorkPartnerClientNoGet(bw,client_no)))==0){
 				return COMSEL_BACK;
 			}
 		}
@@ -1597,7 +1597,7 @@ u8		BattleWorkEscCanCheck(BATTLE_WORK *bw,int client_no,u8 no_reshuffle_client)
 			item=ST_ServerParamDataGet(bw,bw->server_param,ID_SP_act_work,CLIENT_NO_MINE)&0xffff;
 			if(((ST_ServerParamDataGet(bw,bw->server_param,ID_SP_act_no,CLIENT_NO_MINE)==SERVER_ITEM_COMMAND_NO)&&
 			    (item>ITEM_PURESYASUBOORU))||
-			    (no_reshuffle_client&No2Bit(CLIENT_NO_MINE))){
+			    (no_reshuffle_client&(1U << CLIENT_NO_MINE))){
 				return COMSEL_ESCAPE;
 			}
 			else{
@@ -1629,8 +1629,8 @@ u16	BattleWorkShinkaCheck(BATTLE_PARAM *bp,int *sel_mons_no,int *shinka_cond)
 
 	while(bp->level_up_flag){
 		for(sel_mons_no[0]=0;sel_mons_no[0]<POKEMON_TEMOTI_MAX;sel_mons_no[0]++){
-			if(bp->level_up_flag&No2Bit(sel_mons_no[0])){
-				bp->level_up_flag&=(No2Bit(sel_mons_no[0])^0xffffffff);
+			if(bp->level_up_flag&(1U << sel_mons_no[0])){
+				bp->level_up_flag&=((1U << sel_mons_no[0])^0xffffffff);
 				break;
 			}
 		}
@@ -1850,7 +1850,7 @@ void	BattleWorkFormChgCheck(BATTLE_WORK *bw)
 		pp=BattleWorkPokemonParamGet(bw,CLIENT_NO_MINE,i);
 		monsno=PokeParaGet(pp,ID_PARA_monsno_egg,NULL);
 		//ミノムッチフォルムチェンジ
-		if((monsno==MONSNO_MINOMUTTI)&&(bw->appear_flag[CLIENT_NO_MINE]&No2Bit(i))){
+		if((monsno==MONSNO_MINOMUTTI)&&(bw->appear_flag[CLIENT_NO_MINE]&(1U << i))){
 			switch(BattleWorkGroundIDGet(bw)){
 			default:
 			case GROUND_ID_LAWN:
@@ -1898,7 +1898,7 @@ void	BattleWorkAppearFlagSet(BATTLE_WORK *bw,int client_no,int sel_mons_no)
 #ifdef ASSERT_CHECK
 	AssertCheck(client_no,15);
 #endif
-	bw->appear_flag[client_no]|=No2Bit(sel_mons_no);
+	bw->appear_flag[client_no]|=(1U << sel_mons_no);
 }
 
 //============================================================================================

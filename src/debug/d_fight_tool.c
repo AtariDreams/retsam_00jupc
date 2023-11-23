@@ -1083,7 +1083,7 @@ void	DebugFightAIScreenCreate(DEBUG_FIGHT_PARAM *dfp)
 		cnt=i-DF_BASIC_AI;
 		MSGMAN_GetString(dfp->man_msg,i,dfp->msg_buf);
 		GF_STR_PrintSimple(dfp->win_m,FONT_SYSTEM,dfp->msg_buf,MINE_X,MINE_Y+16*cnt,MSG_NO_PUT,NULL);
-		if(dfp->dsp.ai_bit&No2Bit(cnt)){
+		if(dfp->dsp.ai_bit&(1U << cnt)){
 			MSGMAN_GetString(dfp->man_msg,DF_AI_ON,dfp->msg_buf);
 			GF_STR_PrintSimple(dfp->win_m,FONT_SYSTEM,dfp->msg_buf,ENEMY_X,MINE_Y+16*cnt,MSG_NO_PUT,NULL);
 		}
@@ -1112,7 +1112,7 @@ void	DebugFightAutoScreenCreate(DEBUG_FIGHT_PARAM *dfp)
 		cnt=i-DF_PP_NO_DEC;
 		MSGMAN_GetString(dfp->man_msg,i,dfp->msg_buf);
 		GF_STR_PrintSimple(dfp->win_m,FONT_SYSTEM,dfp->msg_buf,MINE_X,MINE_Y+16*cnt,MSG_NO_PUT,NULL);
-		if(dfp->dsp.battle_status_flag&No2Bit(cnt)){
+		if(dfp->dsp.battle_status_flag&(1U << cnt)){
 			MSGMAN_GetString(dfp->man_msg,DF_AI_ON,dfp->msg_buf);
 			GF_STR_PrintSimple(dfp->win_m,FONT_SYSTEM,dfp->msg_buf,ENEMY_X,MINE_Y+16*cnt,MSG_NO_PUT,NULL);
 		}
@@ -3844,8 +3844,8 @@ static u32 PokeRndGet(int mons_no,int sex,int chr,int rare)
 			return rnd;
 		}
 		for(i=3;i<8;i++){
-			if(rnd&No2Bit(i)){
-				rnd|=No2Bit(i+16);
+			if(rnd&(1U << i)){
+				rnd|=(1U << (i+16));
 			}
 		}
 		if((rnd%25)<chr){

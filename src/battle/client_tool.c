@@ -4722,7 +4722,7 @@ static	void	TCB_WazaSelectAI(TCB_PTR tcb,void *work)
 				wazacnt=0;
 	
 				for(i=0;i<WAZA_TEMOTI_MAX;i++){
-					if((tws->wazabit&No2Bit(i))==0){
+					if((tws->wazabit&(1U << i))==0){
 						waza[wazacnt]=i+1;
 						wazacnt++;
 					}
@@ -4772,7 +4772,7 @@ static	void	TCB_WazaSelectAI(TCB_PTR tcb,void *work)
 			wazacnt=0;
 
 			for(i=0;i<WAZA_TEMOTI_MAX;i++){
-				if((tws->wazabit&No2Bit(i))==0){
+				if((tws->wazabit&(1U << i))==0){
 					waza[wazacnt]=i+1;
 					wazacnt++;
 				}
@@ -5897,7 +5897,7 @@ static	void	TCB_PokemonSelect(TCB_PTR tcb,void *work)
 				tps->plist->item=tps->item;
 				tps->plist->client_no=tps->client_no;
 				tps->plist->cursor_flg=tps->decend_key;
-				if((tps->no_reshuffle_client&No2Bit(tps->client_no))==0){
+				if((tps->no_reshuffle_client&(1U << tps->client_no))==0){
 					tps->plist->fight_poke1 = tps->sel_mons_no[tps->client_no];
 				}
 				else{
@@ -5906,7 +5906,7 @@ static	void	TCB_PokemonSelect(TCB_PTR tcb,void *work)
 				if(BattleWorkFightTypeGet(tps->bw)&FIGHT_TYPE_MULTI){
 					tps->plist->fight_poke2 = NO_SEL_MONS;
 				}
-				else if((tps->no_reshuffle_client&No2Bit(BattleWorkPartnerClientNoGet(tps->bw,tps->client_no)))==0){
+				else if((tps->no_reshuffle_client&(1U << BattleWorkPartnerClientNoGet(tps->bw,tps->client_no)))==0){
 					tps->plist->fight_poke2 = tps->sel_mons_no[BattleWorkPartnerClientNoGet(tps->bw,tps->client_no)];
 				}
 				else{
@@ -8293,7 +8293,7 @@ static	void	CT_EscapeMessageParamMake(BATTLE_WORK *bw,CLIENT_PARAM *cp,ESCAPE_ME
 //	GF_ASSERT(emp->escape_flag!=0);
 	
 	for(client_no=0;client_no<BattleWorkClientSetMaxGet(bw);client_no++){
-		if(emp->escape_flag&No2Bit(client_no)){
+		if(emp->escape_flag&(1U << client_no)){
 			if(BattleWorkMineEnemyCheck(bw,client_no)){
 				enemy_escape++;
 			}

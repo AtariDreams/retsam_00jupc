@@ -404,8 +404,8 @@ static u32 BattleTowerPokemonParamMake(BTOWER_SCRWORK* wk,B_TOWER_POKEMON* pwd,
 #else
 		//プラチナはタワーも修正する(08.03.17)(似た処理がfrontier_tool.cにもあるので注意！)
 		//データの性格と一致していない"もしくは"レアの時は、ループを回す
-				if (PokeRareGetPara(poke_id,personal_rnd))
-			personal_rnd ^= 0x10000000;
+			if (PokeRareGetPara(poke_id,personal_rnd))
+				personal_rnd ^= 0x10000000;
 		}while((prd_s.chr!=PokeSeikakuGetRnd(personal_rnd)));
 #endif
 
@@ -430,7 +430,7 @@ static u32 BattleTowerPokemonParamMake(BTOWER_SCRWORK* wk,B_TOWER_POKEMON* pwd,
 	//努力値
 	exp=0;
 	for(i=0;i<6;i++){
-		if(prd_s.exp_bit&No2Bit(i)){
+		if(prd_s.exp_bit&(1U << i)){
 			exp++;
 		}
 	}
@@ -440,7 +440,7 @@ static u32 BattleTowerPokemonParamMake(BTOWER_SCRWORK* wk,B_TOWER_POKEMON* pwd,
 		exp=PARA_EXP_TOTAL_MAX/exp;
 	}
 	for(i = 0;i < 6;i++){
-		if(prd_s.exp_bit&No2Bit(i)){
+		if(prd_s.exp_bit&(1U << i)){
 			pwd->exp[i]=exp;
 		}
 	}

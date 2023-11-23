@@ -899,25 +899,25 @@ static	void	ClientPSPtoPPCopy(BATTLE_WORK *bw,CLIENT_PARAM *cp)
 	//‚Ö‚ñ‚µ‚ñ’†‚ÍAHP‚Æcondition‚Ì‚Ý‘‚«–ß‚µ
 	if((ptpcp->condition2&CONDITION2_HENSHIN)==0){
 		for(i=0;i<WAZA_TEMOTI_MAX;i++){
-			if((ptpcp->monomane_bit&No2Bit(i))==0){
+			if((ptpcp->monomane_bit&(1U << i))==0){
 				PokeParaPut(pp,ID_PARA_waza1+i,		(u8 *)&ptpcp->waza[i]);
 				PokeParaPut(pp,ID_PARA_pp1+i,		(u8 *)&ptpcp->pp[i]);
 			}
 		}
 	}
-	if((ptpcp->hatakiotosu&No2Bit(ptpcp->sel_mons_no))==0){
+	if((ptpcp->hatakiotosu&(1U << ptpcp->sel_mons_no))==0){
 		PokeParaPut(pp,ID_PARA_item,	(u8 *)&ptpcp->item);
 	}
 #else AFTER_MASTER_061026_FIX
 	//‚Ö‚ñ‚µ‚ñ’†‚ÍAHP‚Æcondition‚Ì‚Ý‘‚«–ß‚µ
 	if((ptpcp->condition2&CONDITION2_HENSHIN)==0){
 		for(i=0;i<WAZA_TEMOTI_MAX;i++){
-			if((ptpcp->monomane_bit&No2Bit(i))==0){
+			if((ptpcp->monomane_bit&(1U << i))==0){
 				PokeParaPut(pp,ID_PARA_waza1+i,		(u8 *)&ptpcp->waza[i]);
 				PokeParaPut(pp,ID_PARA_pp1+i,		(u8 *)&ptpcp->pp[i]);
 			}
 		}
-		if((ptpcp->hatakiotosu&No2Bit(ptpcp->sel_mons_no))==0){
+		if((ptpcp->hatakiotosu&(1U << ptpcp->sel_mons_no))==0){
 			PokeParaPut(pp,ID_PARA_item,	(u8 *)&ptpcp->item);
 		}
 	}

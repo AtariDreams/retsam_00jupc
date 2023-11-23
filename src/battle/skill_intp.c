@@ -60,9 +60,9 @@
 
 #include "battle_snd_def.h"
 
-#include "fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
-#include "server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
-#include "client_def.h"		///<ClientParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
+#include "fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢?/[ƒX‚È‚Ì‚ÅA‹–‰Â
+#include "server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢?/[ƒX‚È‚Ì‚ÅA‹–‰Â
+#include "client_def.h"		///<ClientParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢?/[ƒX‚È‚Ì‚ÅA‹–‰Â
 
 //MAKE‚ÌˆË‘¶ŠÖŒW‚ÉŠÜ‚ß‚é‚½‚ß‚ÉIncludei–{—ˆ‚Í•K—v‚È‚¢j
 #include "battle/skill/waza_seq.naix"
@@ -937,7 +937,7 @@ static	BOOL	WS_POKEMON_RETURN(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		for(client_no=0;client_no<client_set_max;client_no++){
 			cp=BattleWorkClientParamGet(bw,client_no);
 			if((cp->client_type&CLIENT_ENEMY_FLAG)&&
-			  ((sp->no_reshuffle_client&No2Bit(client_no))==0)){
+			  ((sp->no_reshuffle_client&(1U << client_no))==0)){
 				SCIO_PokemonReturnSet(bw,sp,client_no);
 			}
 		}
@@ -1498,7 +1498,7 @@ static	BOOL	WS_HP_GAUGE_OUT(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		for(client_no=0;client_no<client_set_max;client_no++){
 			cp=BattleWorkClientParamGet(bw,client_no);
 			if(((cp->client_type&CLIENT_ENEMY_FLAG)==0)&&
-			   ((sp->no_reshuffle_client&No2Bit(client_no))==0)){
+			   ((sp->no_reshuffle_client&(1U << client_no))==0)){
 				SCIO_HPGaugeOutSet(bw,client_no);
 			}
 		}
@@ -2052,7 +2052,7 @@ static	BOOL	WS_KIZETSU_CHECK(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 	if(sp->psp[client_no].hp==0){
 		sp->kizetsu_client=client_no;
-		sp->server_status_flag|=(No2Bit(client_no)<<SERVER_STATUS_FLAG_KIZETSU_SHIFT);
+		sp->server_status_flag|=((1U << client_no)<<SERVER_STATUS_FLAG_KIZETSU_SHIFT);
 		//•m€‰ñ”‚ğƒJƒEƒ“ƒg
 		sp->total_hinshi[client_no]++;
 		//•m€‚Ì‚È‚Â‚«“xŒvZ
@@ -2079,8 +2079,8 @@ static	BOOL	WS_KIZETSU_EFFECT(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 	SCIO_KizetsuEffectSet(bw,sp,sp->kizetsu_client);
 
-	sp->server_status_flag&=(No2Bit(sp->kizetsu_client)<<SERVER_STATUS_FLAG_KIZETSU_SHIFT)^0xffffffff;
-	sp->server_status_flag2|=No2Bit(sp->kizetsu_client)<<SERVER_STATUS_FLAG2_GET_EXP_SHIFT;
+	sp->server_status_flag&=((1U << sp->kizetsu_client)<<SERVER_STATUS_FLAG_KIZETSU_SHIFT)^0xffffffff;
+	sp->server_status_flag2|=(1U << sp->kizetsu_client)<<SERVER_STATUS_FLAG2_GET_EXP_SHIFT;
 	sp->client_act_work[sp->kizetsu_client][ACT_PARA_ACT_NO]=SERVER_WAZA_END_NO;
 
 	ST_ServerKizetsuWorkInit(bw,sp,sp->kizetsu_client);
@@ -2529,7 +2529,7 @@ static	BOOL	WS_GET_EXP_CHECK(BATTLE_WORK *bw,SERVER_PARAM *sp)
 			for(i=0;i<PokeParty_GetPokeCount(BattleWorkPokePartyGet(bw,CLIENT_NO_MINE));i++){
 				pp=BattleWorkPokemonParamGet(bw,CLIENT_NO_MINE,i);
 				if((PokeParaGet(pp,ID_PARA_monsno,NULL))&&(PokeParaGet(pp,ID_PARA_hp,NULL))){
-					if(sp->get_exp_right_flag[(sp->kizetsu_client>>1)&1]&No2Bit(i)){
+					if(sp->get_exp_right_flag[(sp->kizetsu_client>>1)&1]&(1U << i)){
 						get_exp_poke_total++;
 					}
 					itemno=PokeParaGet(pp,ID_PARA_item,NULL);
@@ -2685,7 +2685,7 @@ static	BOOL	WS_POKEMON_LIST(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 	for(client_no=0;client_no<client_set_max;client_no++){
 		if(sp->client_status[client_no]&CLIENT_STATUS_POKE_RESHUFFLE){
-			client_bit|=No2Bit(client_no);
+			client_bit|=(1U << client_no);
 			SCIO_PokemonSelectSet(bw,sp,client_no,BPL_MODE_NO_CANCEL,0,NO_DOUBLE_SEL);
 		}
 	}
@@ -2693,14 +2693,14 @@ static	BOOL	WS_POKEMON_LIST(BATTLE_WORK *bw,SERVER_PARAM *sp)
 	for(client_no=0;client_no<client_set_max;client_no++){
 		if(BattleWorkFightTypeGet(bw)==FIGHT_TYPE_2vs2_SIO){
 			pair_client=BattleWorkPartnerClientNoGet(bw,client_no);
-			if(((client_bit&No2Bit(client_no))==0)&&
-			   ((client_bit&No2Bit(pair_client))==0)){
-				client_bit|=No2Bit(client_no);
+			if(((client_bit&(1U << client_no))==0)&&
+			   ((client_bit&(1U << pair_client))==0)){
+				client_bit|=(1U << client_no);
 				SCIO_SioWaitMessageWithRecData(bw,client_no);
 			}
 		}
 		else{
-			if((client_bit&No2Bit(client_no))==0){
+			if((client_bit&(1U << client_no))==0){
 				SCIO_SioWaitMessageWithRecData(bw,client_no);
 			}
 		}
@@ -2741,8 +2741,8 @@ static	BOOL	WS_POKEMON_LIST_WAIT(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		if((sp->client_status[client_no]&CLIENT_STATUS_POKE_RESHUFFLE)&&(ST_ServerBufferResGet(sp,client_no))){
 			sp->reshuffle_sel_mons_no[client_no]=sp->server_buffer[client_no][0]-1;
 			reshuffle_count--;
-			if((sp->server_status_flag2&(No2Bit(client_no)<<SERVER_STATUS_FLAG2_SIO_WAIT_SHIFT))==0){
-				sp->server_status_flag2|=(No2Bit(client_no)<<SERVER_STATUS_FLAG2_SIO_WAIT_SHIFT);
+			if((sp->server_status_flag2&((1U << client_no)<<SERVER_STATUS_FLAG2_SIO_WAIT_SHIFT))==0){
+				sp->server_status_flag2|=((1U << client_no)<<SERVER_STATUS_FLAG2_SIO_WAIT_SHIFT);
 				SCIO_SioWaitMessageWithRecData(bw,client_no);
 			}
 		}
@@ -2808,7 +2808,7 @@ static	BOOL	WS_POKEMON_RESHUFFLE(BATTLE_WORK *bw,SERVER_PARAM *sp)
 	sp->client_status[client_no]&=CLIENT_STATUS_POKE_RESHUFFLE_OFF;
 
 	//“ü‚ê‘Ö‚¦‚ç‚ê‚È‚¢ƒtƒ‰ƒO‚àƒIƒt
-	sp->no_reshuffle_client&=(No2Bit(client_no)^0xffffffff);
+	sp->no_reshuffle_client&=((1U << client_no)^0xffffffff);
 
 	sp->sel_mons_no[client_no]=sp->reshuffle_sel_mons_no[client_no];
 	sp->reshuffle_sel_mons_no[client_no]=6;
@@ -3019,7 +3019,7 @@ static	BOOL	WS_VALUE(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		data[0]=bit;
 		break;
 	case VAL_TO_BIT:	//’l‚ğƒrƒbƒg‚É•ÏŠ·
-		data[0]=No2Bit(value);
+		data[0]=(1U << value);
 		break;
 	case VAL_GET:		//’l‚ğæ“¾
 		GF_ASSERT_MSG(0,"VAL_GET‚Íw’è‚Å‚«‚Ü‚¹‚ñ");
@@ -3459,7 +3459,7 @@ static	BOOL	WS_PSP_VALUE(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		data=bit;
 		break;
 	case VAL_TO_BIT:	//’l‚ğƒrƒbƒg‚É•ÏŠ·
-		data=No2Bit(value);
+		data=(1U << value);
 		break;
 	case VAL_GET:		//’l‚ğæ“¾
 		GF_ASSERT_MSG(0,"VAL_GET‚Íw’è‚Å‚«‚Ü‚¹‚ñ");
@@ -3728,7 +3728,7 @@ static	BOOL	WS_VALUE_WORK(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		data_s[0]=bit;
 		break;
 	case VAL_TO_BIT:	//’l‚ğƒrƒbƒg‚É•ÏŠ·
-		data_s[0]=No2Bit(data_d[0]);
+		data_s[0]=(1U << data_d[0]);
 		break;
 	case VAL_GET:		//’l‚ğæ“¾
 		data_d[0]=data_s[0];
@@ -3825,7 +3825,7 @@ static	BOOL	WS_PSP_VALUE_WORK(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		data=bit;
 		break;
 	case VAL_TO_BIT:	//’l‚ğƒrƒbƒg‚É•ÏŠ·
-		data=No2Bit(data_d[0]);
+		data=(1U << data_d[0]);
 		break;
 	case VAL_GET:		//’l‚ğæ“¾
 		data_d[0]=data;
@@ -5261,7 +5261,7 @@ static	BOOL	WS_MONOMANE(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				else{
 					sp->psp[sp->attack_client].pp[waza_set_pos]=5;
 				}
-				sp->psp[sp->attack_client].wkw.monomane_bit|=No2Bit(waza_set_pos);
+				sp->psp[sp->attack_client].wkw.monomane_bit|=(1U << waza_set_pos);
 				//‚Æ‚Á‚Ä‚¨‚«‚ğƒRƒs[‚µ‚½‚çAƒJƒEƒ“ƒ^‚ğƒŠƒZƒbƒg
 				if(sp->waza_work==WAZANO_TOTTEOKI){
 					sp->psp[sp->attack_client].wkw.totteoki_count=0;
@@ -5693,7 +5693,7 @@ static	BOOL	WS_NEGOTO(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		   (sp->psp[sp->attack_client].waza[pos]==WAZANO_SAWAGU)||
 		   (sp->psp[sp->attack_client].waza[pos]==WAZANO_OSYABERI)||
 		   (ST_TameWazaCheck(sp,sp->psp[sp->attack_client].waza[pos]))){
-			wazabit|=No2Bit(pos);
+			wazabit|=(1U << pos);
 		}
 	}
 
@@ -5705,7 +5705,7 @@ static	BOOL	WS_NEGOTO(BATTLE_WORK *bw,SERVER_PARAM *sp)
 	else{
 		do{
 			pos=BattleWorkRandGet(bw)%4;
-		}while((wazabit&No2Bit(pos)));
+		}while((wazabit&(1U << pos)));
 		sp->waza_work=sp->psp[sp->attack_client].waza[pos];
 	}
 	return FALSE;
@@ -5847,7 +5847,7 @@ static	BOOL	WS_IYASINOSUZU(BATTLE_WORK *bw,SERVER_PARAM *sp)
 			
 		if(fight_type&FIGHT_TYPE_2vs2){
 			client_no=SideClientNoGet(bw,sp,SIDE_ATTACK_PAIR);
-			if((sp->no_reshuffle_client&No2Bit(client_no))==0){
+			if((sp->no_reshuffle_client&(1U << client_no))==0){
 				if(ST_ServerKatayaburiTokuseiCheck(sp,sp->attack_client,client_no,TOKUSYU_BOUON)==FALSE){
 					sp->psp[client_no].condition=0;
 					sp->psp[client_no].condition2&=CONDITION2_AKUMU_OFF;
@@ -5868,7 +5868,7 @@ static	BOOL	WS_IYASINOSUZU(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		sp->psp[sp->attack_client].condition2&=CONDITION2_AKUMU_OFF;
 		if(fight_type&FIGHT_TYPE_2vs2){
 			client_no=SideClientNoGet(bw,sp,SIDE_ATTACK_PAIR);
-			if((sp->no_reshuffle_client&No2Bit(client_no))==0){
+			if((sp->no_reshuffle_client&(1U << client_no))==0){
 				sp->psp[client_no].condition=0;
 				sp->psp[client_no].condition2&=CONDITION2_AKUMU_OFF;
 			}
@@ -5917,7 +5917,7 @@ static	BOOL	WS_DOROBOU(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		SkillSeqInc(sp,adrs1);
 	}
 	//’@‚«—‚Æ‚³‚ê‚Ä‚¢‚é‚ÍA¸”s‚·‚é
-	else if(sp->scw[dir].hatakiotosu_item&No2Bit(sp->sel_mons_no[sp->attack_client])){
+	else if(sp->scw[dir].hatakiotosu_item&(1U << sp->sel_mons_no[sp->attack_client])){
 		SkillSeqInc(sp,adrs1);
 	}
 	//‚Ç‚¿‚ç‚©‚ªA“Á«ƒ}ƒ‹ƒ`ƒ^ƒCƒv‚È‚çA¸”s‚·‚é
@@ -6710,7 +6710,7 @@ static	BOOL	WS_MEROMERO(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		SkillSeqInc(sp,adrs);
 	}
 	else{
-		sp->psp[sp->tsuika_client].condition2|=No2Bit(sp->client_work)<<MEROMERO_SHIFT;
+		sp->psp[sp->tsuika_client].condition2|=(1U << sp->client_work)<<MEROMERO_SHIFT;
 	}
 
 	return FALSE;
@@ -7330,7 +7330,7 @@ static	BOOL	WS_TEDASUKE(BATTLE_WORK *bw,SERVER_PARAM *sp)
 	
 	if(fight_type&FIGHT_TYPE_2vs2){
 		client_no=SideClientNoGet(bw,sp,SIDE_ATTACK_PAIR);
-		if(((sp->no_reshuffle_client&No2Bit(client_no))==0)&&
+		if(((sp->no_reshuffle_client&(1U << client_no))==0)&&
 #if AFTER_MASTER_070320_BT3_EUR_FIX
 		    (sp->client_act_work[client_no][ACT_PARA_ACT_NO]!=SERVER_WAZA_END_NO)&&
 #endif //AFTER_MASTER_070320_BT3_EUR_FIX
@@ -7387,8 +7387,8 @@ static	BOOL	WS_TRICK(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		SkillSeqInc(sp,adrs1);
 	}
 	//’@‚«—‚Æ‚³‚ê‚Ä‚¢‚é‚ÍA¸”s‚·‚é
-	else if((sp->scw[dir_a].hatakiotosu_item&No2Bit(sp->sel_mons_no[sp->attack_client]))||
-			(sp->scw[dir_d].hatakiotosu_item&No2Bit(sp->sel_mons_no[sp->defence_client]))){
+	else if((sp->scw[dir_a].hatakiotosu_item&(1U << sp->sel_mons_no[sp->attack_client]))||
+			(sp->scw[dir_d].hatakiotosu_item&(1U << sp->sel_mons_no[sp->defence_client]))){
 		SkillSeqInc(sp,adrs1);
 	}
 	else if(((sp->psp[sp->attack_client].item==0)&&(sp->psp[sp->defence_client].item==0))||
@@ -7595,9 +7595,9 @@ static	BOOL	WS_REVENGE(BATTLE_WORK *bw,SERVER_PARAM *sp)
 #endif
 
 	if( ((sp->otf[sp->attack_client].butsuri_otf_damage[sp->defence_client])&&
-		 (sp->otf[sp->attack_client].butsuri_otf_client_bit&No2Bit(sp->defence_client))) ||
+		 (sp->otf[sp->attack_client].butsuri_otf_client_bit&(1U << sp->defence_client))) ||
 	    ((sp->otf[sp->attack_client].tokusyu_otf_damage[sp->defence_client])&&
-		 (sp->otf[sp->attack_client].tokusyu_otf_client_bit&No2Bit(sp->defence_client))) ){
+		 (sp->otf[sp->attack_client].tokusyu_otf_client_bit&(1U << sp->defence_client))) ){
 		sp->damage_value=20;
 	}
 	else{
@@ -7712,7 +7712,7 @@ static	BOOL	WS_HATAKIOTOSU(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		sp->mp.msg_para[1]=ST_ServerTagNickParaMake(sp,sp->defence_client);
 		sp->mp.msg_para[2]=sp->psp[sp->defence_client].item;
 		sp->psp[sp->defence_client].item=0;
-		sp->scw[dir].hatakiotosu_item|=No2Bit(sp->sel_mons_no[sp->defence_client]);
+		sp->scw[dir].hatakiotosu_item|=(1U << sp->sel_mons_no[sp->defence_client]);
 	}
 	else{
 		SkillSeqInc(sp,adrs);
@@ -11590,7 +11590,7 @@ static	void	TCB_GetExp(TCB_PTR tcb,void *work)
 		pp=BattleWorkPokemonParamGet(tsiw->bw,exp_client_no,sel_mons_no);
 		itemno=PokeParaGet(pp,ID_PARA_item,NULL);
 		eqp=ItemParamGet(itemno,ITEM_PRM_EQUIP,HEAPID_BATTLE);
-		if((eqp==SOUBI_KEIKENTIGET)||(tsiw->sp->get_exp_right_flag[client_no]&No2Bit(sel_mons_no))){
+		if((eqp==SOUBI_KEIKENTIGET)||(tsiw->sp->get_exp_right_flag[client_no]&(1U << sel_mons_no))){
 			break;
 		}
 	}
@@ -11630,7 +11630,7 @@ static	void	TCB_GetExp(TCB_PTR tcb,void *work)
 
 			if((PokeParaGet(pp,ID_PARA_hp,NULL))&&(PokeParaGet(pp,ID_PARA_level,NULL)!=100)){
 
-				if(tsiw->sp->get_exp_right_flag[client_no]&No2Bit(sel_mons_no)){
+				if(tsiw->sp->get_exp_right_flag[client_no]&(1U << sel_mons_no)){
 					get_exp_total=tsiw->sp->get_exp;
 				}
 	
@@ -11743,7 +11743,7 @@ static	void	TCB_GetExp(TCB_PTR tcb,void *work)
 				if(tsiw->sp->sel_mons_no[exp_client_no]==sel_mons_no){
 					ST_PokemonParamReload(tsiw->bw,tsiw->sp,exp_client_no,tsiw->sp->sel_mons_no[exp_client_no]);
 				}
-				tsiw->sp->level_up_pokemon|=No2Bit(sel_mons_no);
+				tsiw->sp->level_up_pokemon|=(1U << sel_mons_no);
 				SCIO_HPGaugeRefreshSet(tsiw->bw,tsiw->sp,exp_client_no);
 
 				mp.msg_id=LevelUpMsg;
@@ -12042,7 +12042,7 @@ static	void	TCB_GetExp(TCB_PTR tcb,void *work)
 		}
 		break;
 	case SEQ_GE_END_CHECK:
-		tsiw->sp->get_exp_right_flag[client_no]&=(No2Bit(sel_mons_no)^0xffffffff);
+		tsiw->sp->get_exp_right_flag[client_no]&=((1U << sel_mons_no)^0xffffffff);
 		tsiw->work[GE_SEL_MONS_NO]=sel_mons_no+1;
 		tsiw->seq_no=SEQ_GE_INIT;
 		break;
@@ -12138,7 +12138,7 @@ static	void	PokeExpCalc(POKEPARTY *ppt,int pos,int mons_no,int form_no)
 				break;
 		}
 		//ƒ|ƒPƒ‹ƒXó‘Ô‚ÍA“w—Í’l‚ğ2”{
-		if(PokerusedCheck(ppt,No2Bit(pos))){
+		if(PokerusedCheck(ppt,(1U << pos))){
 			work=work*2;
 		}
 		//ƒAƒCƒeƒ€‚Å“w—Í’l2”{‚ÌŒø‰Ê‚ğ‘•”õ‚µ‚Ä‚¢‚éê‡‚Í2”{‚·‚é
@@ -12254,7 +12254,7 @@ static	void	TCB_GetPokemon(TCB_PTR tcb,void *work)
 	ssm_p=BattleWorkSoftSpriteManagerGet(tsiw->bw);
 
 	get_client_no=CLIENT_NO_ENEMY;
-	if(tsiw->sp->no_reshuffle_client&No2Bit(get_client_no)){
+	if(tsiw->sp->no_reshuffle_client&(1U << get_client_no)){
 		get_client_no=CLIENT_NO_ENEMY2;
 	}
 

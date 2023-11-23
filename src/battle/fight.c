@@ -2271,7 +2271,7 @@ static void FightPinchSECheck(TCB_PTR tcb, void *work)
 			gauge=CT_CPGaugeWorkGet(cp);
 			if(gauge!=NULL){	
 				if(GetHPGaugeDottoColor(gauge->hp,gauge->hpmax,GAUGE_HP_DOTTOMAX)==HP_DOTTO_RED){
-					flag|=No2Bit(client_no);
+					flag|=(1U << client_no);
 				}
 			}
 		}

@@ -466,7 +466,7 @@ static	void	ServerCommandSelect(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				break;
 			}
 			///<入れ替えるポケモンを持たないClientNoは、コマンド選択なし
-			if(sp->no_reshuffle_client&No2Bit(client_no)){
+			if(sp->no_reshuffle_client&(1U << client_no)){
 				sp->com_seq_no[client_no]=SCSSEQ_COMMAND_SELECT_WAIT;
 				sp->client_act_work[client_no][ACT_PARA_ACT_NO]=SERVER_WAZA_END_NO;	///<技シーケンス終了
 				break;
@@ -1021,7 +1021,7 @@ static	void	ServerBeforeAct(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		case SBA_KIAI_PUNCH:		//きあいパンチメッセージ表示チェック
 			while(sp->sba_work<client_set_max){
 				client_no=sp->client_agi_work[sp->sba_work];
-				if(sp->no_reshuffle_client&No2Bit(client_no)){
+				if(sp->no_reshuffle_client&(1U << client_no)){
 					sp->sba_work++;
 					continue;
 				}
@@ -1556,7 +1556,7 @@ static	void	ServerPokeConditionCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 	while(sp->pcc_work<client_set_max){
 		client_no=sp->psp_agi_work[sp->pcc_work];
-		if(sp->no_reshuffle_client&No2Bit(client_no)){
+		if(sp->no_reshuffle_client&(1U << client_no)){
 			sp->pcc_work++;
 			continue;
 		}
@@ -1770,7 +1770,7 @@ static	void	ServerPokeConditionCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				if(ST_ServerWazaOutCheck(sp,client_no)){
 					i=SUB_SEQ_SAWAGU_END;
 					sp->psp[client_no].condition2&=CONDITION2_SAWAGU_OFF;
-					sp->field_condition&=((No2Bit(client_no)<<FIELD_SAWAGU_SHIFT)^0xffffffff);
+					sp->field_condition&=(((1U << client_no)<<FIELD_SAWAGU_SHIFT)^0xffffffff);
 				}
 				else if(sp->psp[client_no].condition2&CONDITION2_SAWAGU){
 					i=SUB_SEQ_NOISY;
@@ -1778,7 +1778,7 @@ static	void	ServerPokeConditionCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				else{
 					i=SUB_SEQ_SAWAGU_END;
 					sp->psp[client_no].condition2&=CONDITION2_SAWAGU_OFF;
-					sp->field_condition&=((No2Bit(client_no)<<FIELD_SAWAGU_SHIFT)^0xffffffff);
+					sp->field_condition&=(((1U << client_no)<<FIELD_SAWAGU_SHIFT)^0xffffffff);
 				}
 				sp->client_work=client_no;
 				ST_ServerSequenceLoad(sp,ARC_SUB_SEQ,i);
@@ -2100,7 +2100,7 @@ static	void	ServerSideConditionCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 	case SIDE_CONDITION_CHECK_MIRAIYOCHI:
 		while(sp->scc_work<client_set_max){
 			client_no=sp->psp_agi_work[sp->scc_work];
-			if(sp->no_reshuffle_client&No2Bit(client_no)){
+			if(sp->no_reshuffle_client&(1U << client_no)){
 				sp->scc_work++;
 				continue;
 			}
@@ -2128,7 +2128,7 @@ static	void	ServerSideConditionCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 	case SIDE_CONDITION_CHECK_HOROBINOUTA:
 		while(sp->scc_work<client_set_max){
 			client_no=sp->psp_agi_work[sp->scc_work];
-			if(sp->no_reshuffle_client&No2Bit(client_no)){
+			if(sp->no_reshuffle_client&(1U << client_no)){
 				sp->scc_work++;
 				continue;
 			}
@@ -2305,7 +2305,7 @@ static	void	ServerItemCommand(BATTLE_WORK *bw,SERVER_PARAM *sp)
 				sp->msg_work=ITEM_USE_MSG_RECV_MULTI;
 			}
 			else{
-				sp->msg_work=Bit2No(sp->AIWT.AI_ITEM_CONDITION[sp->attack_client>>1]);
+				sp->msg_work=__builtin_ctz(sp->AIWT.AI_ITEM_CONDITION[sp->attack_client>>1]);
 			}
 			seq_no=SUB_SEQ_TRUSE_RECV_CONDITION;
 			break;
@@ -2602,14 +2602,14 @@ static	int	ServerBadgeCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no)
 #ifndef ORDER_IGNORE_ONLY
 	if(i<level){
 #endif ORDER_IGNORE_ONLY
-		i=ST_ServerWaruagakiCheck(bw,sp,sp->attack_client,No2Bit(sp->waza_no_pos[sp->attack_client]),SSWC_ALL);
+		i=ST_ServerWaruagakiCheck(bw,sp,sp->attack_client,(1U << sp->waza_no_pos[sp->attack_client]),SSWC_ALL);
 		if(i==0x0f){		//出せる技がない
 			seq_no[0]=SUB_SEQ_NAMAKERU;		//命令無視（なまける）
 			return 1;
 		}
 		do{
 			j=BattleWorkRandGet(bw)&3;
-		}while(i&No2Bit(j));
+		}while(i&(1U << j));
 		sp->waza_no_pos[sp->attack_client]=j;
 		sp->waza_no_temp=sp->psp[sp->attack_client].waza[sp->waza_no_pos[sp->attack_client]];
 		sp->waza_no_now=sp->waza_no_temp;
@@ -2746,7 +2746,7 @@ static	BOOL	ServerPPCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		   ((sp->psp[sp->attack_client].condition2&CONDITION2_KEEP)==0)&&
 		   ((sp->psp[sp->attack_client].condition2&CONDITION2_ABARERU)==0)&&
 #if AFTER_MASTER_061113_1_FIX
-		   ((sp->field_condition&(No2Bit(sp->attack_client)<<FIELD_SAWAGU_SHIFT))==0)&&
+		   ((sp->field_condition&((1U << sp->attack_client)<<FIELD_SAWAGU_SHIFT))==0)&&
 #endif AFTER_MASTER_061113_1_FIX
 			(pos<WAZA_TEMOTI_MAX)){
 		sp->waza_status_flag|=WAZA_STATUS_FLAG_PP_NONE;
@@ -3116,7 +3116,7 @@ static	BOOL	ServerStatusCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 			break;
 		case SSC_MEROMERO:	//メロメロチェック
 			if(sp->psp[sp->attack_client].condition2&CONDITION2_MEROMERO){
-				sp->client_work=Bit2No((sp->psp[sp->attack_client].condition2&CONDITION2_MEROMERO)>>MEROMERO_SHIFT);
+				sp->client_work=__builtin_ctz((sp->psp[sp->attack_client].condition2&CONDITION2_MEROMERO)>>MEROMERO_SHIFT);
 				if(BattleWorkRandGet(bw)&1){
 					ST_ServerSequenceLoad(sp,ARC_SUB_SEQ,SUB_SEQ_MEROMERO_KEEP);
 					sp->next_server_seq_no=sp->server_seq_no;
@@ -4049,7 +4049,7 @@ static	void	ServerHPCalc(BATTLE_WORK *bw,SERVER_PARAM *sp)
 			if(sp->AIWT.wtd[sp->waza_no_now].kind==KIND_BUTSURI){
 				sp->otf[sp->defence_client].butsuri_otf_damage[sp->attack_client]=sp->damage;
 				sp->otf[sp->defence_client].butsuri_otf_client=sp->attack_client;
-				sp->otf[sp->defence_client].butsuri_otf_client_bit|=No2Bit(sp->attack_client);
+				sp->otf[sp->defence_client].butsuri_otf_client_bit|=(1U << sp->attack_client);
 				sp->ostf[sp->defence_client].butsuri_ostf_damage=sp->damage;
 				sp->ostf[sp->defence_client].butsuri_ostf_client=sp->attack_client;
 			}
@@ -4057,7 +4057,7 @@ static	void	ServerHPCalc(BATTLE_WORK *bw,SERVER_PARAM *sp)
 			else if(sp->AIWT.wtd[sp->waza_no_now].kind==KIND_TOKUSYU){
 				sp->otf[sp->defence_client].tokusyu_otf_damage[sp->attack_client]=sp->damage;
 				sp->otf[sp->defence_client].tokusyu_otf_client=sp->attack_client;
-				sp->otf[sp->defence_client].tokusyu_otf_client_bit|=No2Bit(sp->attack_client);
+				sp->otf[sp->defence_client].tokusyu_otf_client_bit|=(1U << sp->attack_client);
 				sp->ostf[sp->defence_client].tokusyu_ostf_damage=sp->damage;
 				sp->ostf[sp->defence_client].tokusyu_ostf_client=sp->attack_client;
 			}
@@ -4411,7 +4411,7 @@ static	void	ServerWazaOutAfterKouka(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 			while(sp->swoak_work<BattleWorkClientSetMaxGet(bw)){
 				client_no=sp->psp_agi_work[sp->swoak_work];
-				if(sp->no_reshuffle_client&No2Bit(client_no)){
+				if(sp->no_reshuffle_client&(1U << client_no)){
 					sp->swoak_work++;
 					continue;
 				}
@@ -4562,7 +4562,7 @@ static	void	ServerLoopCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 			do{
 				client_no=sp->psp_agi_work[sp->client_loop++];
-				if(((sp->no_reshuffle_client&No2Bit(client_no))==0)&&(sp->psp[client_no].hp)){
+				if(((sp->no_reshuffle_client&(1U << client_no))==0)&&(sp->psp[client_no].hp)){
 					cp=BattleWorkClientParamGet(bw,client_no);
 					if( ((flag&CLIENT_ENEMY_FLAG)&&((CT_CPClientTypeGet(cp)&CLIENT_ENEMY_FLAG)==0))||
 						((flag&CLIENT_ENEMY_FLAG)==0)&&(CT_CPClientTypeGet(cp)&CLIENT_ENEMY_FLAG)){
@@ -4588,7 +4588,7 @@ static	void	ServerLoopCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 			do{
 				client_no=sp->psp_agi_work[sp->client_loop++];
-				if(((sp->no_reshuffle_client&No2Bit(client_no))==0)&&(sp->psp[client_no].hp)){
+				if(((sp->no_reshuffle_client&(1U << client_no))==0)&&(sp->psp[client_no].hp)){
 					if(client_no!=sp->attack_client){
 						ST_ServerLoopInit(bw,sp);
 						sp->defence_client=client_no;
@@ -4615,9 +4615,9 @@ static	void	ServerLoopCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 static	void	ServerJibakuEffect(BATTLE_WORK *bw,SERVER_PARAM *sp)
 {
 	if(sp->server_status_flag&SERVER_STATUS_FLAG_JIBAKU_MASK){
-		sp->kizetsu_client=Bit2No((sp->server_status_flag&SERVER_STATUS_FLAG_JIBAKU_MASK)>>SERVER_STATUS_FLAG_JIBAKU_SHIFT);
+		sp->kizetsu_client=__builtin_ctz((sp->server_status_flag&SERVER_STATUS_FLAG_JIBAKU_MASK)>>SERVER_STATUS_FLAG_JIBAKU_SHIFT);
 		sp->server_status_flag&=SERVER_STATUS_FLAG_JIBAKU_MASK_OFF;
-//		sp->server_status_flag2|=No2Bit(sp->kizetsu_client)<<SERVER_STATUS_FLAG2_GET_EXP_SHIFT;
+//		sp->server_status_flag2|=(1U << sp->kizetsu_client)<<SERVER_STATUS_FLAG2_GET_EXP_SHIFT;
 		ST_ServerSequenceLoad(sp,ARC_SUB_SEQ,SUB_SEQ_JIBAKU_KIZETSU);
 		sp->server_seq_no=SERVER_WAZA_SEQUENCE_NO;
 		sp->next_server_seq_no=SERVER_WAZA_HIT_AFTER_CHECK_NO;
@@ -5092,7 +5092,7 @@ static	BOOL	ServerReshuffleCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 						}
 					}
 					if(hp_total==0){
-						sp->no_reshuffle_client|=No2Bit(client_no);	///<入れ替えるポケモンを持たないClientNoをビットで格納
+						sp->no_reshuffle_client|=(1U << client_no);	///<入れ替えるポケモンを持たないClientNoをビットで格納
 						sp->sel_mons_no[client_no]=POKEMON_TEMOTI_MAX;
 					}
 					else{
@@ -5124,7 +5124,7 @@ static	BOOL	ServerReshuffleCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 					}
 	
 					if(hp==0){
-						sp->no_reshuffle_client|=No2Bit(client_no);	///<入れ替えるポケモンを持たないClientNoをビットで格納
+						sp->no_reshuffle_client|=(1U << client_no);	///<入れ替えるポケモンを持たないClientNoをビットで格納
 						sp->sel_mons_no[client_no]=POKEMON_TEMOTI_MAX;
 					}
 					else{
@@ -5176,7 +5176,7 @@ static	BOOL	ServerReshuffleCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 					sp->client_act_work[client_no][ACT_PARA_ACT_NO]=SERVER_WAZA_END_NO;
 #endif
 					if(hp_total==0){
-						sp->no_reshuffle_client|=No2Bit(client_no);	///<入れ替えるポケモンを持たないClientNoをビットで格納
+						sp->no_reshuffle_client|=(1U << client_no);	///<入れ替えるポケモンを持たないClientNoをビットで格納
 					}
 					else{
 						sp->next_server_seq_no=seq_no;
@@ -5215,7 +5215,7 @@ static	BOOL	ServerReshuffleCheck(BATTLE_WORK *bw,SERVER_PARAM *sp)
 //					sp->client_act_work[client_no][ACT_PARA_ACT_NO]=SERVER_WAZA_END_NO;
 	
 					if(hp==0){
-						sp->no_reshuffle_client|=No2Bit(client_no);	///<入れ替えるポケモンを持たないClientNoをビットで格納
+						sp->no_reshuffle_client|=(1U << client_no);	///<入れ替えるポケモンを持たないClientNoをビットで格納
 					}
 					else{
 						sp->next_server_seq_no=seq_no;
@@ -5452,7 +5452,7 @@ static	BOOL	ServerDirSelectCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,u8 client_no,u
 
 	if(fight_type&FIGHT_TYPE_2vs2){
 		if(*range==RANGE_TEDASUKE){
-			if((sp->no_reshuffle_client&No2Bit(BattleWorkPartnerClientNoGet(bw,client_no)))==0){
+			if((sp->no_reshuffle_client&(1U << BattleWorkPartnerClientNoGet(bw,client_no)))==0){
 				return TRUE;
 			}
 			else{
@@ -5554,16 +5554,16 @@ static	BOOL	ServerKizetsuCheck(SERVER_PARAM *sp,int next_seq,int no_set_seq,int 
 	int	client_bit;
 
 	no=0;
-	client_bit=No2Bit(sp->psp_agi_work[no])<<SERVER_STATUS_FLAG_KIZETSU_SHIFT;
+	client_bit=(1U << sp->psp_agi_work[no])<<SERVER_STATUS_FLAG_KIZETSU_SHIFT;
 
 	if(sp->server_status_flag&SERVER_STATUS_FLAG_KIZETSU){
 		while((sp->server_status_flag&client_bit)==0){
 			no++;
-			client_bit=No2Bit(sp->psp_agi_work[no])<<SERVER_STATUS_FLAG_KIZETSU_SHIFT;
+			client_bit=(1U << sp->psp_agi_work[no])<<SERVER_STATUS_FLAG_KIZETSU_SHIFT;
 		}
 		sp->server_status_flag&=(client_bit^0xffffffff);
-		sp->kizetsu_client=Bit2No(client_bit>>SERVER_STATUS_FLAG_KIZETSU_SHIFT);
-//		sp->server_status_flag2|=No2Bit(sp->kizetsu_client)<<SERVER_STATUS_FLAG2_GET_EXP_SHIFT;
+		sp->kizetsu_client=__builtin_ctz(client_bit>>SERVER_STATUS_FLAG_KIZETSU_SHIFT);
+//		sp->server_status_flag2|=(1U << sp->kizetsu_client)<<SERVER_STATUS_FLAG2_GET_EXP_SHIFT;
 		if(flag==SKC_MICHIDURE_OFF){
 			ST_ServerSequenceLoad(sp,ARC_SUB_SEQ,SUB_SEQ_KIZETSU);
 		}
@@ -5606,7 +5606,7 @@ static	BOOL	ServerGetExpCheck(SERVER_PARAM *sp,int next_seq,int no_set_seq)
 				client_bit=client_bit<<1;
 			}
 			sp->server_status_flag2&=(client_bit^0xffffffff);
-			sp->kizetsu_client=Bit2No(client_bit>>SERVER_STATUS_FLAG2_GET_EXP_SHIFT);
+			sp->kizetsu_client=__builtin_ctz(client_bit>>SERVER_STATUS_FLAG2_GET_EXP_SHIFT);
 			ST_ServerSequenceLoad(sp,ARC_SUB_SEQ,SUB_SEQ_GET_EXP);
 			sp->server_seq_no=SERVER_WAZA_SEQUENCE_NO;
 			sp->next_server_seq_no=next_seq;

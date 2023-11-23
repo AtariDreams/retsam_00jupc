@@ -958,14 +958,14 @@ static	void	DebugBattleCommandSequence(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 					if(dbp->client_no>=CLIENT_MAX){
 						dbp->client_no=1;
 					}
-				}while(sp->no_reshuffle_client&No2Bit(dbp->client_no));
+				}while(sp->no_reshuffle_client&(1U << dbp->client_no));
 				DB_MonsNamePut(bw,dbp);
 				DB_CommandPut(bw,dbp);
 				DB_CommandDataPut(bw,dbp);
 			}
 			else if(bw->fight_type&FIGHT_TYPE_2vs2){
 				dbp->client_no^=2;
-				if(sp->no_reshuffle_client&No2Bit(dbp->client_no)){
+				if(sp->no_reshuffle_client&(1U << dbp->client_no)){
 					dbp->client_no^=2;
 				}
 				DB_MonsNamePut(bw,dbp);
@@ -1824,7 +1824,7 @@ static	void	DebugBattleClientNoInit(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 	if((dbp->page==SEQ_COMMAND)||(dbp->page==SEQ_BOOT_AI)){
 		dbp->client_no=1;
-		if(sp->no_reshuffle_client&No2Bit(dbp->client_no)){
+		if(sp->no_reshuffle_client&(1U << dbp->client_no)){
 			dbp->client_no^=2;
 		}
 	}

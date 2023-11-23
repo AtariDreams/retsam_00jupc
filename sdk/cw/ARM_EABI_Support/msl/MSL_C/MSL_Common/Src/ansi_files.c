@@ -241,9 +241,8 @@ FILE * _MSL_CDECL __find_unopened_file(void)
 		}										/*- mm 981007 -*/
 	}
 	
-	if ((p = malloc(sizeof (FILE))) != NULL)	/*- mm 981007 -*/
+	if ((p = calloc(sizeof (FILE))) != NULL)	/*- mm 981007 -*/
 	{											/*- mm 981007 -*/
-		memset((void *)p, 0, sizeof(FILE));		/*- mm 981007 -*/
 		p->is_dynamically_allocated = 1;		/*- mm 981007 -*/
 		plast->next_file_struct = p;			/*- mm 981007 -*/
 		return(p);								/*- mm 981007 -*/

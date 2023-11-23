@@ -692,7 +692,7 @@ static u32 BattleTowerPokemonParamMake(BTOWER_SCRWORK* wk,B_TOWER_POKEMON* pwd,
 	//“w—Í’l
 	exp=0;
 	for(i=0;i<6;i++){
-		if(prd_s.exp_bit&No2Bit(i)){
+		if(prd_s.exp_bit&(1U << i)){
 			exp++;
 		}
 	}
@@ -702,7 +702,7 @@ static u32 BattleTowerPokemonParamMake(BTOWER_SCRWORK* wk,B_TOWER_POKEMON* pwd,
 		exp=PARA_EXP_TOTAL_MAX/exp;
 	}
 	for(i = 0;i < 6;i++){
-		if(prd_s.exp_bit&No2Bit(i)){
+		if(prd_s.exp_bit&(1U << i)){
 			pwd->exp[i]=exp;
 		}
 	}

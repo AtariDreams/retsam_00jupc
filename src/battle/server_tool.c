@@ -344,7 +344,7 @@ void	ST_PokemonParamGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int sel_m
 
 	//はたきおとされている時は、アイテムを持っていないことにする
 	dir=BattleWorkMineEnemyCheck(bw,client_no);
-	if(sp->scw[dir].hatakiotosu_item&No2Bit(sp->sel_mons_no[client_no])){
+	if(sp->scw[dir].hatakiotosu_item&(1U << sp->sel_mons_no[client_no])){
 		sp->psp[client_no].item=0;
 		sp->psp[client_no].wkw.karuwaza_flag=0;
 	}
@@ -388,7 +388,7 @@ void	ST_PokemonParamReload(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int se
 	if((sp->psp[client_no].condition2&CONDITION2_HENSHIN)==0){
 		for(i=0;i<WAZA_TEMOTI_MAX;i++){
 			//ものまねしている技のリロードはしない
-			if((sp->psp[client_no].wkw.monomane_bit&No2Bit(i))==0){
+			if((sp->psp[client_no].wkw.monomane_bit&(1U << i))==0){
 				sp->psp[client_no].waza[i]=		PokeParaGet(pp,ID_PARA_waza1+i,			0);
 				sp->psp[client_no].pp[i]=		PokeParaGet(pp,ID_PARA_pp1+i,			0);
 				sp->psp[client_no].pp_count[i]=	PokeParaGet(pp,ID_PARA_pp_count1+i,		0);
@@ -1836,10 +1836,10 @@ void	ST_ServerGetExpRightFlagSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 	fight_type=BattleWorkFightTypeGet(bw);
 
 	while(no<=CLIENT_NO_MINE2){
-		if( ((sp->no_reshuffle_client&No2Bit(no))==0) && 
-			((sp->no_reshuffle_client&No2Bit(client_no))==0) &&
+		if( ((sp->no_reshuffle_client&(1U << no))==0) && 
+			((sp->no_reshuffle_client&(1U << client_no))==0) &&
 			(sp->psp[client_no].hp) ){
-			sp->get_exp_right_flag[(client_no>>1)&1]|=No2Bit(sp->sel_mons_no[no]);
+			sp->get_exp_right_flag[(client_no>>1)&1]|=(1U << sp->sel_mons_no[no]);
 		}
 		no+=2;
 		if((fight_type==FIGHT_TYPE_2vs2_YASEI)||(fight_type==FIGHT_TYPE_AI_MULTI)){
@@ -1866,8 +1866,8 @@ void	ST_ServerGetExpRightFlagReset(SERVER_PARAM *sp,int client_no)
 	no=CLIENT_NO_MINE;
 
 	while(no<=CLIENT_NO_MINE2){
-		if( ((sp->no_reshuffle_client&No2Bit(no))==0) && ((sp->no_reshuffle_client&No2Bit(client_no))==0) ){
-			sp->get_exp_right_flag[(client_no>>1)&1]&=(No2Bit(sp->sel_mons_no[no])^0xffffffff);
+		if( ((sp->no_reshuffle_client&(1U << no))==0) && ((sp->no_reshuffle_client&(1U << client_no))==0) ){
+			sp->get_exp_right_flag[(client_no>>1)&1]&=((1U << sp->sel_mons_no[no])^0xffffffff);
 		}
 		no+=2;
 	}
@@ -2787,8 +2787,8 @@ void	ST_ServerCounterWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp)
 	fight_type=BattleWorkFightTypeGet(bw);
 
 	if((fight_type&FIGHT_TYPE_2vs2)==0){
-		sp->no_reshuffle_client|=No2Bit(CLIENT_NO_MINE2);
-		sp->no_reshuffle_client|=No2Bit(CLIENT_NO_ENEMY2);
+		sp->no_reshuffle_client|=(1U << CLIENT_NO_MINE2);
+		sp->no_reshuffle_client|=(1U << CLIENT_NO_ENEMY2);
 	}
 
 	sp->safari_get_count=	SAFARI_COUNT_FLAT;		///<サファリの捕獲率カウンタ
@@ -2847,8 +2847,8 @@ void	ST_ServerReshuffleWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 
 	for(i=0;i<client_set_max;i++){
 	//「メロメロ」をかけたやつが入れ替わったら、効果を解除
-		if(sp->psp[i].condition2&(No2Bit(client_no)<<MEROMERO_SHIFT)){
-			sp->psp[i].condition2&=((No2Bit(client_no)<<MEROMERO_SHIFT)^0xffffffff);
+		if(sp->psp[i].condition2&((1U << client_no)<<MEROMERO_SHIFT)){
+			sp->psp[i].condition2&=(((1U << client_no)<<MEROMERO_SHIFT)^0xffffffff);
 		}
 	//しめ系の技をかけたやつが入れ替わったら、効果を解除
 		if((sp->psp[i].condition2&CONDITION2_SHIME)&&(sp->psp[i].wkw.shime_client_no==client_no)){
@@ -2896,7 +2896,7 @@ void	ST_ServerReshuffleWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 #endif //GB003_060815_FIX
 
 #if B1371_060815_FIX
-	sp->field_condition&=((No2Bit(client_no)<<FIELD_SAWAGU_SHIFT)^0xffffffff);	//さわぐフラグを落とす
+	sp->field_condition&=(((1U << client_no)<<FIELD_SAWAGU_SHIFT)^0xffffffff);	//さわぐフラグを落とす
 #endif B1371_060815_FIX
 
 	//パワートリックフラグが立っている場合は、攻撃と防御の値を入れ替える
@@ -2951,8 +2951,8 @@ void	ST_ServerKizetsuWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 			sp->psp[i].condition2&=CONDITION2_KUROIMANAZASHI_OFF;
 		}
 	//「メロメロ」をかけたやつが入れ替わったら、効果を解除
-		if(sp->psp[i].condition2&(No2Bit(client_no)<<MEROMERO_SHIFT)){
-			sp->psp[i].condition2&=((No2Bit(client_no)<<MEROMERO_SHIFT)^0xffffffff);
+		if(sp->psp[i].condition2&((1U << client_no)<<MEROMERO_SHIFT)){
+			sp->psp[i].condition2&=(((1U << client_no)<<MEROMERO_SHIFT)^0xffffffff);
 		}
 	//しめ系の技をかけたやつが入れ替わったら、効果を解除
 		if((sp->psp[i].condition2&CONDITION2_SHIME)&&(sp->psp[i].wkw.shime_client_no==client_no)){
@@ -2997,7 +2997,7 @@ void	ST_ServerKizetsuWorkInit(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 #endif //GB003_060815_FIX
 
 #if B1371_060815_FIX
-	sp->field_condition&=((No2Bit(client_no)<<FIELD_SAWAGU_SHIFT)^0xffffffff);	//さわぐフラグを落とす
+	sp->field_condition&=(((1U << client_no)<<FIELD_SAWAGU_SHIFT)^0xffffffff);	//さわぐフラグを落とす
 #endif B1371_060815_FIX
 
 ///<気絶時の確認をしている時に入れ替え時の不具合を発見したので
@@ -3071,42 +3071,42 @@ int		ST_ServerWaruagakiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int 
 	for(pos=0;pos<4;pos++){
 		//わざがない
 		if((sp->psp[client_no].waza[pos]==0)&&(check_bit&SSWC_WAZA_NONE)){
-			waza_bit|=No2Bit(pos);
+			waza_bit|=(1U << pos);
 		}
 		//PPがない
 		if((sp->psp[client_no].pp[pos]==0)&&(check_bit&SSWC_PP_NONE)){
-			waza_bit|=No2Bit(pos);
+			waza_bit|=(1U << pos);
 		}
 		//かなしばりされてる
 		if((sp->psp[client_no].waza[pos]==sp->psp[client_no].wkw.kanashibari_wazano)&&(check_bit&SSWC_KANASHIBARI)){
-			waza_bit|=No2Bit(pos);
+			waza_bit|=(1U << pos);
 		}
 		//いちゃもんをつけられている
 		if((sp->psp[client_no].waza[pos]==sp->waza_no_old[client_no])&&(check_bit&SSWC_ICHAMON)&&
 		   (sp->psp[client_no].condition2&CONDITION2_ICHAMON)){
-			waza_bit|=No2Bit(pos);
+			waza_bit|=(1U << pos);
 		}
 		//ちょうはつされている
 		if((sp->psp[client_no].wkw.chouhatsu_count)&&(check_bit&SSWC_CHOUHATSU)&&
 //	   	   (WT_WazaDataParaGet(sp->psp[client_no].waza[pos],ID_WTD_damage)==0)){
 	   	   (sp->AIWT.wtd[sp->psp[client_no].waza[pos]].damage==0)){
-			waza_bit|=No2Bit(pos);
+			waza_bit|=(1U << pos);
 		}
 		//ふういんされている
 		if((ST_ServerHuuinCheck(bw,sp,client_no,sp->psp[client_no].waza[pos]))&&(check_bit&SSWC_HUUIN)){
-			waza_bit|=No2Bit(pos);
+			waza_bit|=(1U << pos);
 		}
 		//じゅうりょくを受けている
 		if((ST_ServerJuuryokuCheck(bw,sp,client_no,sp->psp[client_no].waza[pos]))&&(check_bit&SSWC_JUURYOKU)){
-			waza_bit|=No2Bit(pos);
+			waza_bit|=(1U << pos);
 		}
 		//ヒールブロックを受けている
 		if((ST_ServerHealblockCheck(bw,sp,client_no,sp->psp[client_no].waza[pos]))&&(check_bit&SSWC_HEALBLOCK)){
-			waza_bit|=No2Bit(pos);
+			waza_bit|=(1U << pos);
 		}
 		//アンコール
 		if((sp->psp[client_no].wkw.encore_wazano)&&(sp->psp[client_no].wkw.encore_wazano!=sp->psp[client_no].waza[pos])){
-			waza_bit|=No2Bit(pos);
+			waza_bit|=(1U << pos);
 		}
 		//こだわりハチマキチェック
 		if(((eqp==SOUBI_ONAZIWAZAONLY)||(eqp==SOUBI_ONAZIWAZAONLYSUBAYASAUP)||(eqp==SOUBI_ONAZIAWZAONLYTOKUSYUUP))&&
@@ -3118,7 +3118,7 @@ int		ST_ServerWaruagakiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int 
 			else{
 				if((sp->psp[client_no].wkw.kodawari_wazano)&&
 				   (sp->psp[client_no].wkw.kodawari_wazano!=sp->psp[client_no].waza[pos])){
-					waza_bit|=No2Bit(pos);
+					waza_bit|=(1U << pos);
 				}
 			}
 		}
@@ -3147,7 +3147,7 @@ BOOL	ST_ServerWazaNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int pos
 	ret=TRUE;
 
 	//かなしばりチェック
-	if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_KANASHIBARI)&No2Bit(pos)){
+	if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_KANASHIBARI)&(1U << pos)){
 		mp->msg_tag=TAG_NICK_WAZA;
 		mp->msg_id=KanashibariNGMineMsg;
 		mp->msg_para[0]=ST_ServerTagNickParaMake(sp,client_no);
@@ -3155,14 +3155,14 @@ BOOL	ST_ServerWazaNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int pos
 		ret=FALSE;
 	}
 	//いちゃもんチェック
-	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_ICHAMON)&No2Bit(pos)){
+	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_ICHAMON)&(1U << pos)){
 		mp->msg_tag=TAG_NICK;
 		mp->msg_id=IchamonNGMsg;
 		mp->msg_para[0]=ST_ServerTagNickParaMake(sp,client_no);
 		ret=FALSE;
 	}
 	//ちょうはつチェック
-	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_CHOUHATSU)&No2Bit(pos)){
+	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_CHOUHATSU)&(1U << pos)){
 		mp->msg_tag=TAG_NICK_WAZA;
 		mp->msg_id=ChouhatsuNGMineMsg;
 		mp->msg_para[0]=ST_ServerTagNickParaMake(sp,client_no);
@@ -3170,7 +3170,7 @@ BOOL	ST_ServerWazaNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int pos
 		ret=FALSE;
 	}
 	//ふういんチェック
-	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_HUUIN)&No2Bit(pos)){
+	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_HUUIN)&(1U << pos)){
 		mp->msg_tag=TAG_NICK_WAZA;
 		mp->msg_id=HuuinNGMineMsg;
 		mp->msg_para[0]=ST_ServerTagNickParaMake(sp,client_no);
@@ -3178,7 +3178,7 @@ BOOL	ST_ServerWazaNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int pos
 		ret=FALSE;
 	}
 	//じゅうりょくチェック
-	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_JUURYOKU)&No2Bit(pos)){
+	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_JUURYOKU)&(1U << pos)){
 		mp->msg_tag=TAG_NICK_WAZA;
 		mp->msg_id=JuuryokuNGMineMsg;
 		mp->msg_para[0]=ST_ServerTagNickParaMake(sp,client_no);
@@ -3186,7 +3186,7 @@ BOOL	ST_ServerWazaNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int pos
 		ret=FALSE;
 	}
 	//ヒールブロックチェック
-	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_HEALBLOCK)&No2Bit(pos)){
+	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_HEALBLOCK)&(1U << pos)){
 		mp->msg_tag=TAG_NICK_WAZA_WAZA;
 		mp->msg_id=HealblockNGMineMsg;
 		mp->msg_para[0]=ST_ServerTagNickParaMake(sp,client_no);
@@ -3195,7 +3195,7 @@ BOOL	ST_ServerWazaNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int pos
 		ret=FALSE;
 	}
 	//こだわりハチマキチェック
-	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_KODAWARI)&No2Bit(pos)){
+	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_KODAWARI)&(1U << pos)){
 		mp->msg_tag=TAG_ITEM_WAZA;
 		mp->msg_id=ItemOnaziWazaOnlyMsg;
 		mp->msg_para[0]=sp->psp[client_no].item;
@@ -3203,7 +3203,7 @@ BOOL	ST_ServerWazaNGCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no,int pos
 		ret=FALSE;
 	}
 	//PPチェック（これは、かならず最後にする）
-	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_PP_NONE)&No2Bit(pos)){
+	else if(ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_PP_NONE)&(1U << pos)){
 		mp->msg_tag=TAG_NONE;
 		mp->msg_id=PPNoneMsg;
 		ret=FALSE;
@@ -3932,7 +3932,7 @@ int		ST_ServerTokuseiCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int flag,int client_
 			if((BattleWorkMineEnemyCheck(bw,no)!=BattleWorkMineEnemyCheck(bw,client_no))&&
 			   (sp->psp[no].hp)&&
 			   (ST_ServerTokuseiGet(sp,no)==speabi)){
-				cnt|=No2Bit(no);
+				cnt|=(1U << no);
 			}
 		}
 		break;
@@ -4139,7 +4139,7 @@ BOOL	ST_ServerDorobouItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no)
 	dir=BattleWorkMineEnemyCheck(bw,client_no);
 
 	if((sp->psp[client_no].item)&&
-	  ((sp->scw[dir].hatakiotosu_item&No2Bit(sp->sel_mons_no[client_no]))==0)&&
+	  ((sp->scw[dir].hatakiotosu_item&(1U << sp->sel_mons_no[client_no]))==0)&&
 	   (ItemMailCheck(sp->psp[client_no].item)==FALSE)){
 		ret=TRUE;
 	}
@@ -7137,7 +7137,7 @@ BOOL	ST_ServerWazaHitSoubiItemCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int *seq_no
 	case SOUBI_TEKINIMOTASETEDAMEEZI:
 		if((sp->psp[sp->attack_client].hp)&&
 		   (sp->psp[sp->attack_client].item==0)&&
-		  ((sp->scw[dir].hatakiotosu_item&No2Bit(sp->sel_mons_no[sp->attack_client]))==0)&&
+		  ((sp->scw[dir].hatakiotosu_item&(1U << sp->sel_mons_no[sp->attack_client]))==0)&&
 		   //はたきおとすは除外
 		   (sp->waza_no_now!=WAZANO_HATAKIOTOSU)&&
 		  ((sp->ostf[sp->defence_client].butsuri_ostf_damage)||
@@ -9713,7 +9713,7 @@ BOOL	ST_ServerWazaHitSoubiItemCheckTonbogaeri(BATTLE_WORK *bw,SERVER_PARAM *sp,i
 	if((eqp_d==SOUBI_TEKINIMOTASETEDAMEEZI)&&
 	   (sp->psp[sp->attack_client].hp)&&
 	   (sp->psp[sp->attack_client].item==0)&&
-	  ((sp->scw[dir].hatakiotosu_item&No2Bit(sp->sel_mons_no[sp->attack_client]))==0)&&
+	  ((sp->scw[dir].hatakiotosu_item&(1U << sp->sel_mons_no[sp->attack_client]))==0)&&
 	  ((sp->ostf[sp->defence_client].butsuri_ostf_damage)||
 	   (sp->ostf[sp->defence_client].tokusyu_ostf_damage))&&
 	   (sp->AIWT.wtd[sp->waza_no_now].flag&FLAG_DAGEKI)){
@@ -10584,7 +10584,7 @@ int	ClientAIPokeSelectAI(BATTLE_WORK *bw,int client_no)
 			if((monsno!=0)&&
 			   (monsno!=MONSNO_TAMAGO)&&
 			   (PokeParaGet(pp,ID_PARA_hp,NULL))&&
-			  ((checkbit&No2Bit(i))==0)&&
+			  ((checkbit&(1U << i))==0)&&
 			   (sp->sel_mons_no[no1]!=i)&&
 			   (sp->sel_mons_no[no2]!=i)&&
 			   (i!=sp->ai_reshuffle_sel_mons_no[no1])&&
@@ -10601,7 +10601,7 @@ int	ClientAIPokeSelectAI(BATTLE_WORK *bw,int client_no)
 				}
 			}
 			else{
-				checkbit|=No2Bit(i);
+				checkbit|=(1U << i);
 			}
 		}
 		if(topselmons!=6){
@@ -10624,7 +10624,7 @@ int	ClientAIPokeSelectAI(BATTLE_WORK *bw,int client_no)
 				}
 			}
 			if(i==WAZA_TEMOTI_MAX){
-				checkbit|=No2Bit(topselmons);
+				checkbit|=(1U << topselmons);
 			}
 			else{
 				return topselmons;

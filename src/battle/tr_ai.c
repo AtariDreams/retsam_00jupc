@@ -25,8 +25,8 @@
 #include "tr_ai_def.h"
 #include "tr_ai/tr_ai.dat"
 
-#include "fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
-#include "server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
+#include "fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢?/[ƒX‚È‚Ì‚ÅA‹–‰Â
+#include "server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢?/[ƒX‚È‚Ì‚ÅA‹–‰Â
 
 //MAKE‚ÌˆË‘¶ŠÖŒW‚ÉŠÜ‚ß‚é‚½‚ß‚ÉIncludei–{—ˆ‚Í•K—v‚È‚¢j
 #include "battle/tr_ai/tr_ai_seq.naix"
@@ -402,7 +402,7 @@ void	WazaAIInit2(BATTLE_WORK *bw,SERVER_PARAM *sp,u8 client_no,u8 point_bit)
 	wazabit=ST_ServerWaruagakiCheck(bw,sp,client_no,0,SSWC_ALL);
 
 	for(i=0;i<4;i++){
-		if(wazabit&No2Bit(i)){
+		if(wazabit&(1U << i)){
 			sp->AIWT.AI_WAZAPOINT[i]=0;
 		}
 		sp->AIWT.AI_DAMAGELOSS[i]=100-(BattleWorkRandGet(bw)%16);
@@ -3987,7 +3987,7 @@ static	void	AI_IF_HINSHI(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 	client_no=SideToClientNo(sp,side);
 
-	if(sp->no_reshuffle_client&No2Bit(client_no)){
+	if(sp->no_reshuffle_client&(1U << client_no)){
 		AISeqInc(sp,adrs);
 	}
 }
@@ -4017,7 +4017,7 @@ static	void	AI_IFN_HINSHI(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 	client_no=SideToClientNo(sp,side);
 
-	if((sp->no_reshuffle_client&No2Bit(client_no))==0){
+	if((sp->no_reshuffle_client&(1U << client_no))==0){
 		AISeqInc(sp,adrs);
 	}
 }
@@ -5474,7 +5474,7 @@ static	BOOL	ClientAIBatsugunCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no
 	clienttype=BattleWorkClientTypeGet(bw,client_no)^1;
 	clientno=BattleWorkClientNoGet(bw,clienttype);
 
-	if((sp->no_reshuffle_client&No2Bit(clientno))==0){
+	if((sp->no_reshuffle_client&(1U << clientno))==0){
 		for(i=0;i<4;i++){
 			wazano=sp->psp[client_no].waza[i];
 			type=AIWazaTypeGet(bw,sp,client_no,wazano);
@@ -5498,7 +5498,7 @@ static	BOOL	ClientAIBatsugunCheck(BATTLE_WORK *bw,SERVER_PARAM *sp,int client_no
 		return FALSE;
 	}
 	clientno=BattleWorkPartnerClientNoGet(bw,clientno);
-	if((sp->no_reshuffle_client&No2Bit(clientno))==0){
+	if((sp->no_reshuffle_client&(1U << clientno))==0){
 		for(i=0;i<4;i++){
 			wazano=sp->psp[client_no].waza[i];
 			type=AIWazaTypeGet(bw,sp,client_no,wazano);
@@ -5972,7 +5972,7 @@ int	ClientAIPokeSelectAI(BATTLE_WORK *bw,int client_no)
 			if((monsno!=0)&&
 			   (monsno!=MONSNO_TAMAGO)&&
 			   (PokeParaGet(pp,ID_PARA_hp,NULL))&&
-			  ((checkbit&No2Bit(i))==0)&&
+			  ((checkbit&(1U << i))==0)&&
 			   (sp->sel_mons_no[no1]!=i)&&
 			   (sp->sel_mons_no[no2]!=i)&&
 			   (i!=sp->ai_reshuffle_sel_mons_no[no1])&&
@@ -5989,7 +5989,7 @@ int	ClientAIPokeSelectAI(BATTLE_WORK *bw,int client_no)
 				}
 			}
 			else{
-				checkbit|=No2Bit(i);
+				checkbit|=(1U << i);
 			}
 		}
 		if(topselmons!=6){
@@ -6012,7 +6012,7 @@ int	ClientAIPokeSelectAI(BATTLE_WORK *bw,int client_no)
 				}
 			}
 			if(i==WAZA_TEMOTI_MAX){
-				checkbit|=No2Bit(topselmons);
+				checkbit|=(1U << topselmons);
 			}
 			else{
 				return topselmons;
@@ -6172,7 +6172,7 @@ BOOL	ClientAIItemUseAI(BATTLE_WORK *bw,int client_no)
 //			else if(ItemParamGet(itemno,ITEM_PRM_SLEEP_RCV,HEAPID_BATTLE)){
 			else if(ST_ItemParamGet(sp,itemno,ITEM_PRM_SLEEP_RCV)){
 				if(sp->psp[client_no].condition&CONDITION_NEMURI){
-					sp->AIWT.AI_ITEM_CONDITION[client_no>>1]|=No2Bit(ITEM_USE_MSG_RECV_NEMURI);
+					sp->AIWT.AI_ITEM_CONDITION[client_no>>1]|=(1U << ITEM_USE_MSG_RECV_NEMURI);
 					sp->AIWT.AI_ITEM_TYPE[client_no>>1]=ITEMTYPE_CONDITION_KAIHUKU;
 					ret=TRUE;
 				}
@@ -6182,7 +6182,7 @@ BOOL	ClientAIItemUseAI(BATTLE_WORK *bw,int client_no)
 			else if(ST_ItemParamGet(sp,itemno,ITEM_PRM_POISON_RCV)){
 				if((sp->psp[client_no].condition&CONDITION_DOKU)||
 				   (sp->psp[client_no].condition&CONDITION_DOKUDOKU)){
-					sp->AIWT.AI_ITEM_CONDITION[client_no>>1]|=No2Bit(ITEM_USE_MSG_RECV_DOKU);
+					sp->AIWT.AI_ITEM_CONDITION[client_no>>1]|=(1U << ITEM_USE_MSG_RECV_DOKU);
 					sp->AIWT.AI_ITEM_TYPE[client_no>>1]=ITEMTYPE_CONDITION_KAIHUKU;
 					ret=TRUE;
 				}
@@ -6191,7 +6191,7 @@ BOOL	ClientAIItemUseAI(BATTLE_WORK *bw,int client_no)
 //			else if(ItemParamGet(itemno,ITEM_PRM_BURN_RCV,HEAPID_BATTLE)){
 			else if(ST_ItemParamGet(sp,itemno,ITEM_PRM_BURN_RCV)){
 				if(sp->psp[client_no].condition&CONDITION_YAKEDO){
-					sp->AIWT.AI_ITEM_CONDITION[client_no>>1]|=No2Bit(ITEM_USE_MSG_RECV_YAKEDO);
+					sp->AIWT.AI_ITEM_CONDITION[client_no>>1]|=(1U << ITEM_USE_MSG_RECV_YAKEDO);
 					sp->AIWT.AI_ITEM_TYPE[client_no>>1]=ITEMTYPE_CONDITION_KAIHUKU;
 					ret=TRUE;
 				}
@@ -6200,7 +6200,7 @@ BOOL	ClientAIItemUseAI(BATTLE_WORK *bw,int client_no)
 //			else if(ItemParamGet(itemno,ITEM_PRM_ICE_RCV,HEAPID_BATTLE)){
 			else if(ST_ItemParamGet(sp,itemno,ITEM_PRM_ICE_RCV)){
 				if(sp->psp[client_no].condition&CONDITION_KOORI){
-					sp->AIWT.AI_ITEM_CONDITION[client_no>>1]|=No2Bit(ITEM_USE_MSG_RECV_KOORI);
+					sp->AIWT.AI_ITEM_CONDITION[client_no>>1]|=(1U << ITEM_USE_MSG_RECV_KOORI);
 					sp->AIWT.AI_ITEM_TYPE[client_no>>1]=ITEMTYPE_CONDITION_KAIHUKU;
 					ret=TRUE;
 				}
@@ -6209,7 +6209,7 @@ BOOL	ClientAIItemUseAI(BATTLE_WORK *bw,int client_no)
 //			else if(ItemParamGet(itemno,ITEM_PRM_PARALYZE_RCV,HEAPID_BATTLE)){
 			else if(ST_ItemParamGet(sp,itemno,ITEM_PRM_PARALYZE_RCV)){
 				if(sp->psp[client_no].condition&CONDITION_MAHI){
-					sp->AIWT.AI_ITEM_CONDITION[client_no>>1]|=No2Bit(ITEM_USE_MSG_RECV_MAHI);
+					sp->AIWT.AI_ITEM_CONDITION[client_no>>1]|=(1U << ITEM_USE_MSG_RECV_MAHI);
 					sp->AIWT.AI_ITEM_TYPE[client_no>>1]=ITEMTYPE_CONDITION_KAIHUKU;
 					ret=TRUE;
 				}
@@ -6218,7 +6218,7 @@ BOOL	ClientAIItemUseAI(BATTLE_WORK *bw,int client_no)
 //			else if(ItemParamGet(itemno,ITEM_PRM_PANIC_RCV,HEAPID_BATTLE)){
 			else if(ST_ItemParamGet(sp,itemno,ITEM_PRM_PANIC_RCV)){
 				if(sp->psp[client_no].condition2&CONDITION2_KONRAN){
-					sp->AIWT.AI_ITEM_CONDITION[client_no>>1]|=No2Bit(ITEM_USE_MSG_RECV_KONRAN);
+					sp->AIWT.AI_ITEM_CONDITION[client_no>>1]|=(1U << ITEM_USE_MSG_RECV_KONRAN);
 					sp->AIWT.AI_ITEM_TYPE[client_no>>1]=ITEMTYPE_CONDITION_KAIHUKU;
 					ret=TRUE;
 				}

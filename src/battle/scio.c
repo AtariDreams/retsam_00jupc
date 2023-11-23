@@ -809,7 +809,7 @@ void	SCIO_CommandSelectSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int send_client,int 
 	scsc_flag=0;
 	for(i=0;i<BattleWorkClientSetMaxGet(bw);i++){
 		if(ST_ServerCommandSelectCheck(sp,i)==FALSE){
-			scsc_flag|=No2Bit(i);
+			scsc_flag|=(1U << i);
 		}
 	}
 
@@ -1130,13 +1130,13 @@ void	SCIO_ItemSelectSet(BATTLE_WORK *bw,SERVER_PARAM *sp,int send_client)
 	}
 
 	if(BattleWorkFightTypeGet(bw)==FIGHT_TYPE_2vs2_YASEI){
-		if(((sp->no_reshuffle_client&No2Bit(CLIENT_NO_ENEMY))==0)&&
-		   ((sp->no_reshuffle_client&No2Bit(CLIENT_NO_ENEMY2))==0)){
+		if(((sp->no_reshuffle_client&(1U << CLIENT_NO_ENEMY))==0)&&
+		   ((sp->no_reshuffle_client&(1U << CLIENT_NO_ENEMY2))==0)){
 			isp.enc_double=1;
 			isp.waza_vanish=0;
 			isp.waza_migawari=0;
 		}
-		else if((sp->no_reshuffle_client&No2Bit(CLIENT_NO_ENEMY))==0){
+		else if((sp->no_reshuffle_client&(1U << CLIENT_NO_ENEMY))==0){
 			isp.enc_double=0;
 			if(sp->psp[CLIENT_NO_ENEMY].waza_kouka&WAZAKOUKA_KIE){
 				isp.waza_vanish=1;
@@ -2407,7 +2407,7 @@ void	SCIO_EscapeMessage(BATTLE_WORK *bw,SERVER_PARAM *sp)
 
 	for(client_no=0;client_no<BattleWorkClientSetMaxGet(bw);client_no++){
 		if(sp->client_act_work[client_no][ACT_PARA_ACT_NO]==SERVER_ESCAPE_COMMAND_NO){
-			emp.escape_flag|=No2Bit(client_no);
+			emp.escape_flag|=(1U << client_no);
 		}
 	}
 

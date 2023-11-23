@@ -415,7 +415,7 @@ static	void	MainDebugFight(DEBUG_FIGHT_PARAM *dfp)
 			}
 		}
 		else if(sys.trg==PAD_BUTTON_A){
-			dfp->dsp.ai_bit^=No2Bit(dfp->sub_seq_no);
+			dfp->dsp.ai_bit^=(1U << dfp->sub_seq_no);
 			DebugFightAIScreenCreate(dfp);
 			CursorMove(dfp,MOVE_AI,dfp->sub_seq_no,CUR_PUT);
 		}
@@ -466,7 +466,7 @@ static	void	MainDebugFight(DEBUG_FIGHT_PARAM *dfp)
 		}
 		if(dfp->sub_seq_no<4){
 			if(sys.trg==PAD_BUTTON_A){
-				dfp->dsp.battle_status_flag^=No2Bit(dfp->sub_seq_no);
+				dfp->dsp.battle_status_flag^=(1U << dfp->sub_seq_no);
 				DebugFightAutoScreenCreate(dfp);
 				CursorMove(dfp,MOVE_AI,dfp->sub_seq_no,CUR_PUT);
 			}
