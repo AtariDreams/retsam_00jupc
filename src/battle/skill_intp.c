@@ -11297,8 +11297,7 @@ static	int		SkillSeqDataRead(SERVER_PARAM *sp)
 {
 	int	data;
 
-	data=sp->SkillSeqWork[sp->skill_seq_no];
-	sp->skill_seq_no++;
+	data=sp->SkillSeqWork[sp->skill_seq_no++];
 
 	return	data;
 }
