@@ -114,8 +114,7 @@ BOOL PokeParty_Add(POKEPARTY * party, POKEMON_PARAM * poke)
 		//ŽèŽ‚¿‚ª‚¢‚Á‚Ï‚¢
 		return FALSE;
 	}
-	party->member[party->PokeCount] = *poke;
-	party->PokeCount ++;
+	party->member[party->PokeCount++] = *poke;
 
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_TEMOTI_POKE)
 	SVLD_SetCrc(GMDATA_ID_TEMOTI_POKE);
@@ -137,12 +136,12 @@ BOOL PokeParty_Delete(POKEPARTY * party, int pos)
 	int i;
 	PARTY_POS_ASSERT(party, pos);
 	GF_ASSERT( party->PokeCount > 0 );
+	--party->PokeCount;
 
 	for (i = pos ;i < party->PokeCount - 1; i ++) {
 		party->member[i] = party->member[i + 1];
 	}
 	PokeParaInit(&party->member[i]);
-	party->PokeCount--;
 
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_TEMOTI_POKE)
 	SVLD_SetCrc(GMDATA_ID_TEMOTI_POKE);
