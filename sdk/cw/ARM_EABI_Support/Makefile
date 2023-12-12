@@ -10,10 +10,13 @@ else
 WINPATH := winepath
 endif
 
+# Metrowerks Compiler and Linker
 MWCC = $(WINE) ../ARM_Tools/Command_Line_Tools/2.0/sp2/mwccarm.exe
 MWAR = $(WINE) ../ARM_Tools/Command_Line_Tools/mwldarm.exe
 
-ARFLAGS = -msgstyle std -w on -library
+# GCC Compiler and Linker
+GCC = arm-none-eabi-gcc
+AR = arm-none-eabi-ar
 
 MSL_C_ARCHIVE_FILE := msl/MSL_C/MSL_ARM/Lib/MSL_C_NITRO_Ai_LE.a
 MSL_EXTRAS_ARCHIVE_FILE := msl/MSL_Extras/MSL_ARM/Lib/MSL_Extras_NITRO_Ai_LE.a
@@ -93,10 +96,20 @@ all: $(MSL_C_ARCHIVE_FILE) $(MSL_EXTRAS_ARCHIVE_FILE) $(MSL_CXX_ARCHIVE_FILE) $(
 DEPFILES := $(MSL_C_DEPFILES) $(MSL_EXTRAS_DEPFILES) $(MSL_CXX_DEPFILES) $(NITRO_RUNTIME_DEPFILES)
 
 # TODO: warnings
+
+# Metrowerks Flags
 MSL_C_MWCFLAGS := -O4 -opt speed -proc arm946e -interworking -trigraphs off -stdkeywords off -enum min -ansi off -wchar_t on -cpp_exceptions on -strings reuse -inline on,noauto,bottomup -RTTI on -char signed -bool on -lang c -ipa file -gccinc
+
+# Corresponding GCC Flags
+MSL_C_GCCFLAGS := -O3 -mcpu=arm946e-s -mthumb-interwork -fno-trigraphs -std=c99 -fsigned-char -fexceptions -fno-rtti -fno-threadsafe-statics -fmerge-all-constants -fipa-pta
+
 MSL_EXTRAS_MWCFLAGS := -O4 -opt speed -proc arm946e -interworking -requireprotos -trigraphs off -stdkeywords off -enum min -ansi off -wchar_t on -cpp_exceptions off -strings reuse -inline on,noauto,bottomup -RTTI off -char unsigned -bool off -iso_templates on -lang c99 -ipa file -gccinc
 MSL_CXX_MWCFLAGS := -O4 -opt speed -proc arm946e -interworking -lang c++ -requireprotos -trigraphs on -stdkeywords off -enum min -ansi off -wchar_t on -cpp_exceptions on -strings reuse -inline on,noauto,level=8 -RTTI on -char unsigned -bool on -iso_templates on -ipa file -gccinc
 NITRO_RUNTIME_MWCFLAGS := -O4 -opt speed -proc arm946e -interworking -trigraphs off -stdkeywords off -enum min -ansi off -wchar_t on -cpp_exceptions on -strings reuse -inline on,noauto,bottomup -RTTI on -char unsigned -bool on -iso_templates off -lang c99 -ipa file -gccinc
+
+MSL_EXTRAS_GCCFLAGS := -O3 -mcpu=arm946e-s -mthumb-interwork -fno-trigraphs -std=c99 -funsigned-char -fno-exceptions -fno-rtti -fno-threadsafe-statics -fmerge-all-constants -fipa-pta
+MSL_CXX_GCCFLAGS := -O3 -mcpu=arm946e-s -mthumb-interwork -fno-trigraphs -std=c++2a -funsigned-char -fexceptions -frtti -fno-threadsafe-statics -fmerge-all-constants -fipa-pta
+NITRO_RUNTIME_GCCFLAGS := -O3 -mcpu=arm946e-s -mthumb-interwork -fno-trigraphs -std=c99 -funsigned-char -fexceptions -frtti -fno-threadsafe-statics -fmerge-all-constants -fipa-pta
 
 CW_INCLUDE_DIRS := ./msl/MSL_C/MSL_ARM/Include		\
 		  ./msl/MSL_C/MSL_Common/Include		\
@@ -107,6 +120,7 @@ CW_INCLUDE_DIRS := ./msl/MSL_C/MSL_ARM/Include		\
 		  ./Profiler/include \
 		  ../../NitroSDK/include
 
+# Include Flags
 INCLUDE_FLAGS := $(foreach dname,$(CW_INCLUDE_DIRS),-I$(dname))
 NITRO_RUNTIME_INCLUDE_FLAGS := -I./Runtime/Runtime_Common/MWRuntime -I./Runtime/Runtime_Common -I./Runtime/Runtime_ARM/Common_Source -I./Runtime/Runtime_Common/cxxabi -I./Runtime/RISC_Common
 
@@ -114,40 +128,40 @@ $(DEPFILES):
 
 $(MSL_C_OBJECT_FILES): %.o: %.c
 $(MSL_C_OBJECT_FILES): %.o: %.c %.d
-	$(MWCC) $(MSL_C_MWCFLAGS) $(INCLUDE_FLAGS) -include PREFIX_NITRO.h -gccdep -MD -c -o $@ $<
+	$(GCC) $(MSL_C_GCCFLAGS) $(INCLUDE_FLAGS) -include PREFIX_NITRO.h -MMD -c -o $@ $<
 	@$(call fixdep,$*.d)
 
 $(MSL_EXTRAS_OBJECT_FILES): %.o: %.c
 $(MSL_EXTRAS_OBJECT_FILES): %.o: %.c %.d
-	$(MWCC) $(MSL_EXTRAS_MWCFLAGS) $(INCLUDE_FLAGS) -I./msl/MSL_Extras/MSL_ARM/Include -include PREFIX_NITRO.h -gccdep -MD -c -o $@ $<
+	$(GCC) $(MSL_EXTRAS_GCCFLAGS) $(INCLUDE_FLAGS) -I./msl/MSL_Extras/MSL_ARM/Include -include PREFIX_NITRO.h -MMD -c -o $@ $<
 	@$(call fixdep,$*.d)
 
 $(MSL_CXX_OBJECT_FILES): %.o: %.cpp
 $(MSL_CXX_OBJECT_FILES): %.o: %.cpp %.d
-	$(MWCC) $(MSL_CXX_MWCFLAGS) $(INCLUDE_FLAGS) -gccdep -MD -c -o $@ $<
+	$(GCC) $(MSL_CXX_GCCFLAGS) $(INCLUDE_FLAGS) -MMD -c -o $@ $<
 	@$(call fixdep,$*.d)
 
 $(NITRO_RUNTIME_C_OBJECT_FILES): %.o: %.c
 $(NITRO_RUNTIME_C_OBJECT_FILES): %.o: %.c %.d
-	$(MWCC) $(NITRO_RUNTIME_MWCFLAGS) $(INCLUDE_FLAGS) $(NITRO_RUNTIME_INCLUDE_FLAGS) -gccdep -MD -c -o $@ $<
+	$(GCC) $(NITRO_RUNTIME_GCCFLAGS) $(INCLUDE_FLAGS) $(NITRO_RUNTIME_INCLUDE_FLAGS) -MMD -c -o $@ $<
 	@$(call fixdep,$*.d)
 
 $(NITRO_RUNTIME_CXX_OBJECT_FILES): %.o: %.cpp
 $(NITRO_RUNTIME_CXX_OBJECT_FILES): %.o: %.cpp %.d
-	$(MWCC) $(NITRO_RUNTIME_MWCFLAGS) $(INCLUDE_FLAGS) $(NITRO_RUNTIME_INCLUDE_FLAGS) -gccdep -MD -c -o $@ $<
+	$(GCC) $(NITRO_RUNTIME_GCCFLAGS) $(INCLUDE_FLAGS) $(NITRO_RUNTIME_INCLUDE_FLAGS) -MMD -c -o $@ $<
 	@$(call fixdep,$*.d)
 
 $(MSL_C_ARCHIVE_FILE): $(MSL_C_OBJECT_FILES)
-	$(MWAR) $(ARFLAGS) $^ -o $@
+	$(AR) $(ARFLAGS) $^ -o $@
 
 $(MSL_EXTRAS_ARCHIVE_FILE): $(MSL_EXTRAS_OBJECT_FILES)
-	$(MWAR) $(ARFLAGS) $^ -o $@
+	$(AR) $(ARFLAGS) $^ -o $@
 
 $(MSL_CXX_ARCHIVE_FILE): $(MSL_CXX_OBJECT_FILES)
-	$(MWAR) $(ARFLAGS) $^ -o $@
+	$(AR) $(ARFLAGS) $^ -o $@
 
 $(NITRO_RUNTIME_ARCHIVE_FILE): $(NITRO_RUNTIME_OBJECT_FILES)
-	$(MWAR) $(ARFLAGS) $^ -o $@
+	$(AR) $(ARFLAGS) $^ -o $@
 
 include $(wildcard $(DEPFILES))
 

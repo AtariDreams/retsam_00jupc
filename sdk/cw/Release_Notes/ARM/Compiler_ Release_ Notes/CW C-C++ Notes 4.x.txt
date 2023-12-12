@@ -547,7 +547,7 @@ New Features in this Version
 	of the macro in the precompiler header replaces the previous defintition.
 
 	--- my.pch++ --
-	#pragma precompile_target "my.mch++"
+	#pragma precompile_target "my.pch++"
 
 	#define ERROR 123
 	#define OK 456
@@ -557,7 +557,7 @@ New Features in this Version
 	#define ERROR 1234
 	#define OK 456
 
-	#include "my.mch++"			// warning for ERROR redef, no warning for OK
+	#include "my.pch++"			// warning for ERROR redef, no warning for OK
 
 	#if ERROR!=123
 	#error "ERROR is not 123"	// ERROR is 123, so this is skipped
@@ -567,7 +567,7 @@ New Features in this Version
 		=>
 
 	Warning : macro 'ERROR' redefined
-	test.cpp line 4   #include "my.mch++" 
+	test.cpp line 4   #include "my.pch++" 
 
 	The warning is not emitted in the GCC or VC++ compatibility modes or if
 	#pragma allow_macro_redefs is on.

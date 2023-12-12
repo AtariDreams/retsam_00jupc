@@ -55,7 +55,7 @@ do-build:		$(TARGETS)
 
 include	$(NITROSDK_ROOT)/build/buildtools/modulerules
 
-$(OBJDIR)/std_sprintf.o: PCHDR_C_MCH := $(PCHDR_SRC)
+$(OBJDIR)/std_sprintf.o: PCHDR_C_PCH := $(PCHDR_SRC)
 $(OBJDIR)/std_sprintf.o: CW_VERSION := 2.0/sp1p2
 
 #===== End of Makefile =====

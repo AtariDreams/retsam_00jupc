@@ -672,25 +672,25 @@ binData: $(G3D_TARGETS)
 # precompile
 #----------------------------------------------------------------------------
 PRECOMPILE_SRC		 =	include/precompile/precompile.pch
-PRECOMPILE_CC_MCH	 =	$(OBJDIR)/precompile_cc.mch
+PRECOMPILE_CC_PCH	 =	$(OBJDIR)/precompile_cc.pch
 PRECOMPILE_CCFLAGS	:=	$(CCFLAGS)
-CCFLAGS			+=	-prefix $(PRECOMPILE_CC_MCH)
+CCFLAGS			+=	-prefix $(PRECOMPILE_CC_PCH)
 ifeq	($(USERNAME),ohno)
 CCFLAGS			+=	-msgstyle gcc
 endif
 #DEPENDDIR		 =	$(OBJDIR)
 
-precompile: $(PRECOMPILE_CC_MCH)
+precompile: $(PRECOMPILE_CC_PCH)
 
 #バージョン定義ファイルが更新されたらプリコンパイルヘッダも更新する
-$(PRECOMPILE_CC_MCH):	$(VER_FILE)
+$(PRECOMPILE_CC_PCH):	$(VER_FILE)
 
--include $(PRECOMPILE_CC_MCH).d
-$(PRECOMPILE_CC_MCH):%_cc.mch:
-		$(CC) $(PRECOMPILE_CCFLAGS) $(INCLUDES) $(PRECOMPILE_SRC) -MD -precompile $(PRECOMPILE_CC_MCH)
+-include $(PRECOMPILE_CC_PCH).d
+$(PRECOMPILE_CC_PCH):%_cc.pch:
+		$(CC) $(PRECOMPILE_CCFLAGS) $(INCLUDES) $(PRECOMPILE_SRC) -MD -precompile $(PRECOMPILE_CC_PCH)
 		$(MOVE_SRC_DEPEND)
 		$(MV) $(DEPENDDIR)/$(*F).d $@.d
-$(OBJS):  $(PRECOMPILE_CC_MCH)
+$(OBJS):  $(PRECOMPILE_CC_PCH)
 
 CCFLAGS +=	-thumb
 #----------------------------------------------------------------------------

@@ -9,15 +9,15 @@
 
 #if __option(little_endian)
 	#ifndef __thumb
-		#pragma precompile_target "MSLHeaders_NITRO_A_LE.mch"
+		#pragma precompile_target "MSLHeaders_NITRO_A_LE.pch"
 	#else
-		#pragma precompile_target "MSLHeaders_NITRO_T_LE.mch"
+		#pragma precompile_target "MSLHeaders_NITRO_T_LE.pch"
 	#endif
 #else
 	#ifndef __thumb
-		#pragma precompile_target "MSLHeaders_NITRO_A_BE.mch"
+		#pragma precompile_target "MSLHeaders_NITRO_A_BE.pch"
 	#else
-		#pragma precompile_target "MSLHeaders_NITRO_T_BE.mch"
+		#pragma precompile_target "MSLHeaders_NITRO_T_BE.pch"
 	#endif
 #endif
 

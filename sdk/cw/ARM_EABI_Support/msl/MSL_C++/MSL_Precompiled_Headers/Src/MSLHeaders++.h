@@ -15,30 +15,30 @@
 
 #if __MACH__
 	#if _MSL_USING_MW_C_HEADERS
-		#include <MSLHeaders.Mach-O.mch>
+		#include <MSLHeaders.Mach-O.pch>
 	#else
-		#include <MSL-BSDHeaders.Mach-O.mch>
+		#include <MSL-BSDHeaders.Mach-O.pch>
 	#endif
 #elif __POWERPC__ && !__PPC_EABI__
-	#include <MSLHeaders.PPC.mch>
+	#include <MSLHeaders.PPC.pch>
 #elif __INTEL__
-	#include <MSLHeaders.x86.mch>
+	#include <MSLHeaders.x86.pch>
 #elif defined(__arm)
 	#if __option(little_endian)
 		#ifndef __thumb
-			#include <MSLHeaders_ARM_LE.mch>
+			#include <MSLHeaders_ARM_LE.pch>
 		#else
-			#include <MSLHeaders_Thumb_LE.mch>
+			#include <MSLHeaders_Thumb_LE.pch>
 		#endif
 	#else
 		#ifndef __thumb
-			#include <MSLHeaders_ARM_BE.mch>
+			#include <MSLHeaders_ARM_BE.pch>
 		#else
-			#include <MSLHeaders_Thumb_BE.mch>
+			#include <MSLHeaders_Thumb_BE.pch>
 		#endif
 	#endif
 #elif __PALMOS_TRAPS__
-	#include <MSLHeaders.Palm_OS.68k.mch>
+	#include <MSLHeaders.Palm_OS.68k.pch>
 #else
 	#error Unknown platform!
 #endif

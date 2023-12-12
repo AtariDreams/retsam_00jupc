@@ -405,52 +405,38 @@ SPACE 		?= $(EMPTY) $(EMPTY)
 NITRO_STD_PCHDR	?= True
 
 #----------------------------------------------------------------------------
-CWFOLDER_IRIS	?= C:/Program Files/Metrowerks/CW for NINTENDO DS V1.2
-CWFOLDER_NITRO	?= $(CWFOLDER_IRIS)
-LM_LICENSE_FILE	:= $(subst /,\,$(CWFOLDER_NITRO))\license.dat
-CW_ROOT		:= $(subst $(SPACE),\ ,$(subst \,/,$(CWFOLDER_NITRO)))
-CW_BINDIR	:= $(CW_ROOT)/ARM_Tools/Command_Line_Tools
-CW_ARMDIR	:= $(CW_ROOT)/ARM_EABI_Support
+GCCFOLDER_IRIS	?= C:/Program Files/Metrowerks/CW for NINTENDO DS V1.2
+GCCFOLDER_NITRO	?= $(GCCFOLDER_IRIS)
+LM_LICENSE_FILE	:= $(subst /,\,$(GCCFOLDER_NITRO))\license.dat
+GCC_ROOT		:= $(subst $(SPACE),\ ,$(subst \,/,$(GCCFOLDER_NITRO)))
+GCC_BINDIR	:= $(GCC_ROOT)
+GCC_ARMDIR	:= $(GCC_ROOT)
 
 #----------------------------------------------------------------------------
-SDK_VERINFO_CW_CC	:= $(NITRO_BUILDTOOLSDIR)/verinfo.cw.cc
-SDK_VERINFO_CW_LD	:= $(NITRO_BUILDTOOLSDIR)/verinfo.cw.ld
+SDK_VERINFO_GCC_CC	:= $(NITRO_BUILDTOOLSDIR)/verinfo.gcc.cc
+SDK_VERINFO_GCC_LD	:= $(NITRO_BUILDTOOLSDIR)/verinfo.gcc.ld
 
 ifeq	($(MAKECMDGOALS),do-build)
-SDK_VERINFO_CW_CC := 3.0
-CW_MAJOR_VER	?= 2
-SDK_CW_FORCE_EXPORT_SUPPORT	:= yes
+SDK_VERINFO_GCC_CC := 3.0
+GCC_MAJOR_VER	?= 2
+SDK_GCC_FORCE_EXPORT_SUPPORT	:= yes
 endif
-CW_MAJOR_VER	?= 1
-
-######## IRIS V0.2 Hotfix 1
-######## NITRO V0.3
-#CW_AVOID_STRB		:= -avoid_strb all,noerr
-#
-######## NITRO V0.4 or other
-CW_AVOID_STRB		:= -avoid_byte strb -warn_byte none
-#CW_AVOID_STRB		:= -avoid_byte strb -warn_byte all
-#
+GCC_MAJOR_VER	?= 1
 
 #----------------------------------------------------------------------------
 
 ifeq ($(BUILDING_SDK),1)
-CW_VERSION ?= 2.0/sp2
+GCC_VERSION ?= 2.0/sp2
 else
-CW_VERSION ?= 2.0/sp2p2
+GCC_VERSION ?= 2.0/sp2p2
 endif
 
-MWCC			 = $(WINE) $(CW_BINDIR)/$(CW_VERSION)/mwccarm.exe
-MWAS			:= $(WINE) $(CW_BINDIR)/mwasmarm.exe
-MWLD			:= $(WINE) $(CW_BINDIR)/mwldarm.exe
-MWAR			:= $(MWLD)
+CC			 = $(GCC)
+AS			:= $(GCC)
+LD			:= $(GCC)
+AR			:= $(AR)
 
-CC			 = $(MWCC)
-AS			:= $(MWAS)
-LD			:= $(MWLD)
-AR			:= $(MWAR)
-
-ELFTOBIN		:= $(CW_BINDIR)/elftobin.exe
+ELFTOBIN		:= objcopy
 ELFTOBIN_TYPE		:= $(NITRO_PLATFORM)$(CODEGEN_ARCH)/$(NITRO_BUILD_DIR)
 ELFTOBIN_ARM9		?= $(NITRO_COMPONENTSDIR)/printserver/$(NITRO_BUILDTYPE_ARM9)/printserver.nef
 ELFTOBIN_ARM7		?= $(NITRO_COMPONENTSDIR)/ferret/$(NITRO_BUILDTYPE_ARM7)/ferret.nef
@@ -458,183 +444,153 @@ ELFTOBIN_ROMHEADER	?= $(NITRO_TOOLSDIR)/elftobin/romHeader.bin
 
 #----------------------------------------------------------------------------
 #  Workaround flags
-#	SDK_CW_WARNOFF_SAFESTRB	: use code32.h to wipe warning STRB out
-#	SDK_CW_WA_OPT4		: workaround for -O4
-#	SDK_CW_WA_CONSTPOOLS	: workaround for CW 'ConstantPools.c'line: 346
-#	SDK_CW_WA_OPT_BLX	: workaround for blxeq,blxne with opt>=2
-#	SDK_CW_WA_LIBCXX	: workaround for 'C++' libname in lcf
+#	SDK_GCC_WARNOFF_SAFESTRB	: use code32.h to wipe warning STRB out
+#	SDK_GCC_WA_OPT4		: workaround for -O4
+#	SDK_GCC_WA_CONSTPOOLS	: workaround for GCC 'ConstantPools.c'line: 346
+#	SDK_GCC_WA_OPT_BLX	: workaround for blxeq,blxne with opt>=2
+#	SDK_GCC_WA_LIBCXX	: workaround for 'C++' libname in lcf
 #
 
 #--- flags ---
 ifeq	($(NITRO_PLATFORM),TEG)
-SDK_CW_WARNOFF_SAFESTRB := yes
+SDK_GCC_WARNOFF_SAFESTRB := yes
 else
-SDK_CW_WARNOFF_SAFESTRB	:=
+SDK_GCC_WARNOFF_SAFESTRB	:=
 endif
 
 ######## IRIS V0.2 Hotfix 1
 ######## NITRO V0.3
 ######## NITRO V0.4.1
-#SDK_CW_WA_OPT4		:= yes
-#SDK_CW_WA_CONSTPOOLS	:= yes
-#SDK_CW_WA_OPT_BLX	:= yes
+#SDK_GCC_WA_OPT4		:= yes
+#SDK_GCC_WA_CONSTPOOLS	:= yes
+#SDK_GCC_WA_OPT_BLX	:= yes
 ######## NITRO V0.5
 ######## NITRO V0.5 + HotFix1
 ######## NITRO V0.6
-#SDK_CW_WA_LIBCXX	:= yes
+#SDK_GCC_WA_LIBCXX	:= yes
 
 #-----------------------------------
 #
-ifdef	SDK_CW_WA_OPT_BLX
+ifdef	SDK_GCC_WA_OPT_BLX
 ifdef	NITRO_BLXCHECKED
 #	workaround by pragma
-MACRO_FLAGS	+= -DSDK_CW_WA_OPT_BLX
+MACRO_FLAGS	+= -DSDK_GCC_WA_OPT_BLX
 else
 #	workaround by option
-SDK_CW_AVOID_ARM_ARCH5	:= yes
+SDK_GCC_AVOID_ARM_ARCH5	:= yes
 endif
 endif
 
-ifdef	SDK_CW_WARNOFF_SAFESTRB
-MACRO_FLAGS	+= -DSDK_CW_WARNOFF_SAFESTRB
+ifdef	SDK_GCC_WARNOFF_SAFESTRB
+MACRO_FLAGS	+= -DSDK_GCC_WARNOFF_SAFESTRB
 endif
 
-ifdef	SDK_CW_WA_OPT4
+ifdef	SDK_GCC_WA_OPT4
 ifeq	($(NITRO_CODEGEN),ARM)
 ifneq	($(NITRO_BUILD_TYPE),DEBUG)
-MACRO_FLAGS	+= -DSDK_CW_WA_OPT4
+MACRO_FLAGS	+= -DSDK_GCC_WA_OPT4
 endif
 endif
 endif
 
-ifdef	SDK_CW_WA_CONSTPOOLS
+ifdef	SDK_GCC_WA_CONSTPOOLS
 ifeq	($(NITRO_CODEGEN),THUMB)
 ifneq	($(NITRO_BUILD_TYPE),DEBUG)
-MACRO_FLAGS	+= -DSDK_CW_WA_CONSTPOOLS
+MACRO_FLAGS	+= -DSDK_GCC_WA_CONSTPOOLS
 endif
 endif
 endif
 
-ifdef	SDK_CW_FORCE_EXPORT_SUPPORT
-MACRO_FLAGS   +=  -DSDK_CW_FORCE_EXPORT_SUPPORT
+ifdef	SDK_GCC_FORCE_EXPORT_SUPPORT
+MACRO_FLAGS   +=  -DSDK_GCC_FORCE_EXPORT_SUPPORT
 endif
 
-#----------------------------------------------------------------------------
+
 # SDK small build
-
 ifdef	SDK_SMALL_BUILD
 MACRO_FLAGS	+=	-DSDK_SMALL_BUILD
 endif
 
-#----------------------------------------------------------------------------
-#  Workaround flags
+# Workaround flags
 #	SDK_TEG_WA_VBLANK	: workaround TEG vblank problems
 #
-
 ifeq	($(NITRO_PLATFORM),TEG)
 MACRO_FLAGS	+= -DSDK_TEG_WA_VBLANK
 endif
 
+# Library name rules
+GCC_LIBNAME_RULE_A   := NITRO_A
+GCC_LIBNAME_RULE_T   := NITRO_T
+GCC_LIBNAME_RULE_AI  := NITRO_Ai
+GCC_LIBNAME_RULE_RA  := NITRO_Runtime_A
+GCC_LIBNAME_RULE_RT  := NITRO_Runtime_T
+GCC_LIBNAME_RULE_RAI := NITRO_Runtime_Ai
 
-#----------------------------------------------------------------------------
-######## IRIS  V0.2 Hotfix 1
-######## NITRO V0.3
-######## NITRO V0.4
-#CW_LIBNAME_RULE_A   := ARM
-#CW_LIBNAME_RULE_T   := Thumb
-#CW_LIBNAME_RULE_AI  := ARM_i
-#CW_LIBNAME_RULE_RA  := ARM_Runtime
-#CW_LIBNAME_RULE_RT  := Thumb_Runtime
-#CW_LIBNAME_RULE_RAI := ARM_Runtime_i
-######## NITRO V0.5 or other
-CW_LIBNAME_RULE_A   := NITRO_A
-CW_LIBNAME_RULE_T   := NITRO_T
-CW_LIBNAME_RULE_AI  := NITRO_Ai
-CW_LIBNAME_RULE_RA  := NITRO_Runtime_A
-CW_LIBNAME_RULE_RT  := NITRO_Runtime_T
-CW_LIBNAME_RULE_RAI := NITRO_Runtime_Ai
-#
+# Include directories
+GCC_INCDIRS	= $(GCC_ARMDIR)/msl/MSL_C/MSL_ARM/Include		\
+		  $(GCC_ARMDIR)/msl/MSL_C/MSL_Common/Include		\
+		  $(GCC_ARMDIR)/msl/MSL_C/MSL_Common_Embedded/Math/Include \
+		  $(GCC_ARMDIR)/msl/MSL_C++/MSL_ARM/Include		\
+		  $(GCC_ARMDIR)/msl/MSL_C++/MSL_Common/Include		\
+		  $(GCC_ARMDIR)/msl/MSL_Extras/MSL_Common/Include	\
+		  $(GCC_ARMDIR)/Profiler/include
 
-CW_INCDIRS	= $(CW_ARMDIR)/msl/MSL_C/MSL_ARM/Include		\
-		  $(CW_ARMDIR)/msl/MSL_C/MSL_Common/Include		\
-		  $(CW_ARMDIR)/msl/MSL_C/MSL_Common_Embedded/Math/Include \
-		  $(CW_ARMDIR)/msl/MSL_C++/MSL_ARM/Include		\
-		  $(CW_ARMDIR)/msl/MSL_C++/MSL_Common/Include		\
-		  $(CW_ARMDIR)/msl/MSL_Extras/MSL_Common/Include	\
-		  $(CW_ARMDIR)/Profiler/include
-#--------CW2.0beta2 以降のバージョンではRuntimeのディレクトリが変更されたため
-ifeq		($(CW_MAJOR_VER),2)
-CW_INCDIRS	+= $(CW_ARMDIR)/msl/MSL_Extras/MSL_ARM/Include
-endif
+# Library directories
+GCC_LIBDIRS	?= $(GCC_ARMDIR)/msl/MSL_C/MSL_ARM/Lib			\
+		   $(GCC_LIBCXX_DIR)					\
+		   $(GCC_ARMDIR)/msl/MSL_Extras/MSL_ARM/Lib 		\
+		   $(GCC_ARMDIR)/Runtime/Lib				\
+		   $(GCC_ARMDIR)/Mathlib/lib
 
-CW_CXX		= $(if $(SDK_CW_WA_LIBCXX),CXX,CPP)
-CW_LIBCXX_DIR	= $(if $(SDK_CW_WA_LIBCXX),$(ROOT)/lib/CodeWarrior,$(CW_ARMDIR)/msl/MSL_C++/MSL_ARM/Lib)
-#--------CW2.0beta2 以降のバージョンではRuntimeのディレクトリが変更されたため
-ifeq		($(CW_MAJOR_VER),2)
-CW_LIBDIRS	?= $(CW_ARMDIR)/msl/MSL_C/MSL_ARM/Lib			\
-		   $(CW_LIBCXX_DIR)					\
-		   $(CW_ARMDIR)/msl/MSL_Extras/MSL_ARM/Lib 		\
-		   $(CW_ARMDIR)/Runtime/Runtime_ARM/Runtime_NITRO/Lib	\
-		   $(CW_ARMDIR)/Mathlib/lib
-endif
-CW_LIBDIRS	?= $(CW_ARMDIR)/msl/MSL_C/MSL_ARM/Lib			\
-		   $(CW_LIBCXX_DIR)					\
-		   $(CW_ARMDIR)/msl/MSL_Extras/MSL_ARM/Lib 		\
-		   $(CW_ARMDIR)/Runtime/Lib				\
-		   $(CW_ARMDIR)/Mathlib/lib
-
+# Library suffix
 ifeq		($(CODEGEN_PROC)-$(NITRO_PLATFORM),ARM9-TEG)
-CW_SUFFIX	= _LE_strb.a
+GCC_SUFFIX	= _LE_strb.a
 else
-CW_SUFFIX	= _LE.a
+GCC_SUFFIX	= _LE.a
 endif
 
+# Floating point library
 ifeq		($(CODEGEN_PROC),ARM9)
-CW_LIBFP	?= FP_fastI_v5t_LE.a
-# CW_LIBFP	?= FP_fixedI_v5t_LE.a
-# CW_LIBFP	?= FP_flush0_v5t_LE.a
-# CW_LIBFP	?= FP_fullI_v5t_LE.a
+GCC_LIBFP	?= FP_fastI_v5t_LE.a
 else
-CW_LIBFP	?= FP_fastI_v4t_LE.a
-# CW_LIBFP	?= FP_fixedI_v4t_LE.a
-# CW_LIBFP	?= FP_flush0_v4t_LE.a
-# CW_LIBFP	?= FP_fullI_v4t_LE.a
+GCC_LIBFP	?= FP_fastI_v4t_LE.a
 endif
 
-CW_LIBCXX_ARM	= MSL_$(CW_CXX)_$(CW_LIBNAME_RULE_AI)$(CW_SUFFIX)
+# C++ library for ARM
+GCC_LIBCXX_ARM	= MSL_$(GCC_CXX)_$(GCC_LIBNAME_RULE_AI)$(GCC_SUFFIX)
 
-CW_LIBS_ARM	= MSL_C_$(CW_LIBNAME_RULE_AI)$(CW_SUFFIX)		\
-		  MSL_Extras_$(CW_LIBNAME_RULE_AI)$(CW_SUFFIX)		\
-		  $(CW_LIBCXX_ARM)					\
-		  $(CW_LIBFP)						\
-		  $(CW_LIBNAME_RULE_RAI)$(CW_SUFFIX)
+# Libraries for ARM
+GCC_LIBS_ARM	= MSL_C_$(GCC_LIBNAME_RULE_AI)$(GCC_SUFFIX)		\
+		  MSL_Extras_$(GCC_LIBNAME_RULE_AI)$(GCC_SUFFIX)		\
+		  $(GCC_LIBCXX_ARM)					\
+		  $(GCC_LIBFP)						\
+		  $(GCC_LIBNAME_RULE_RAI)$(GCC_SUFFIX)
 
 # Workaround for Byte Access: Don't use thumb libraries if ARM9-TEG
 ifeq		($(CODEGEN_PROC)-$(NITRO_PLATFORM),ARM9-TEG)
 
-CW_LIBCXX_THUMB = $(CW_LIBCXX_ARM)
+GCC_LIBCXX_THUMB = $(GCC_LIBCXX_ARM)
 
-CW_LIBS_THUMB	= $(CW_LIBS_ARM)
+GCC_LIBS_THUMB	= $(GCC_LIBS_ARM)
 
 else
 
-CW_LIBCXX_THUMB = MSL_$(CW_CXX)_$(CW_LIBNAME_RULE_T)_LE.a
+GCC_LIBCXX_THUMB = MSL_$(GCC_CXX)_$(GCC_LIBNAME_RULE_T)_LE.a
 
-CW_LIBS_THUMB	= MSL_C_$(CW_LIBNAME_RULE_T)_LE.a			\
-		  MSL_Extras_$(CW_LIBNAME_RULE_T)_LE.a			\
-		  $(CW_LIBCXX_THUMB)					\
-		  $(CW_LIBFP)						\
-		  $(CW_LIBNAME_RULE_RT)_LE.a
+GCC_LIBS_THUMB	= MSL_C_$(GCC_LIBNAME_RULE_T)_LE.a			\
+		  MSL_Extras_$(GCC_LIBNAME_RULE_T)_LE.a			\
+		  $(GCC_LIBCXX_THUMB)					\
+		  $(GCC_LIBFP)						\
+		  $(GCC_LIBNAME_RULE_RT)_LE.a
 endif
 
 ifeq	($(CODEGEN_PROC),ARM9)
-STUBS_LIBS	+= libstubscw$(NITRO_LIBSUFFIX).a
+STUBS_LIBS	+= libstubsgcc$(NITRO_LIBSUFFIX).a
 else #	($(CODEGEN_PROC),ARM7)
-STUBS_LIBS	+= libstubscw_sp$(NITRO_LIBSUFFIX).a
+STUBS_LIBS	+= libstubsgcc_sp$(NITRO_LIBSUFFIX).a
 endif
 
-#----------------------------------------------------------------------------
-#  switch by codegen target
+# Switch by codegen target
 #    NITRO_PLATFORM  TEG/TS
 #    NITRO_MEMSIZE   4M/8M
 #    CODEGEN_PROC    ARM7/ARM9
@@ -649,101 +605,85 @@ MACRO_FLAGS	+= -DSDK_$(NITRO_PLATFORM)  \
 MACRO_FLAGS_CC	+= -DSDK_CODE_$(CODEGEN_CC)
 MACRO_FLAGS_AS	+= -DSDK_CODE_$(CODEGEN_AS)
 
-
-#-------------------------------------- CODEGEN_PROC ARM9/ARM7
+# CODEGEN_PROC ARM9/ARM7
 ifeq		($(CODEGEN_PROC),ARM9)
 
-CCFLAGS_PROC	:= -proc $(if $(SDK_CW_AVOID_ARM_ARCH5),arm7tdmi,arm946e)
-ASFLAGS_PROC	:= -proc arm5TE
+CFLAGS_PROC	:= -mcpu=$(if $(SDK_GCC_AVOID_ARM_ARCH5),arm7tdmi,arm946e-s)
+ASFLAGS_PROC	:= -march=armv5te
 
 ifeq		($(NITRO_PLATFORM),TEG)
-CCFLAGS_PROC	+= $(CW_AVOID_STRB)
+CFLAGS_PROC	+= $(GCC_AVOID_STRB)
 endif
 
 else	#	($(CODEGEN_PROC),ARM7)
 
-CCFLAGS_PROC	:= -proc arm7tdmi
-ASFLAGS_PROC	:= -proc arm4T
+CFLAGS_PROC	:= -mcpu=arm7tdmi
+ASFLAGS_PROC	:= -march=armv4t
 
 endif	#	($(CODEGEN_PROC))
 
-#-------------------------------------- NITRO_CODEGEN ARM/THUMB
-
+# NITRO_CODEGEN ARM/THUMB
 ifeq		($(NITRO_CODEGEN),ARM)
-CW_LIBS		?= $(CW_LIBS_ARM)
+GCC_LIBS	?= $(GCC_LIBS_ARM)
 else	#	($(NITRO_CODEGEN),THUMB)
-CW_LIBS		?= $(CW_LIBS_THUMB)
+GCC_LIBS	?= $(GCC_LIBS_THUMB)
 endif
 
-
-#-------------------------------------- CODEGEN_CC  ARM/THUMB
-
+# CODEGEN_CC  ARM/THUMB
 ifeq		($(CODEGEN_CC),THUMB)
-CCFLAGS_ISET	:= -thumb
+CFLAGS_ISET	:= -mthumb
 else
-CCFLAGS_ISET	:= -nothumb
+CFLAGS_ISET	:= -marm
 endif
 
-
-#-------------------------------------- CODEGEN_AS  ARM/THUMB
-
+# CODEGEN_AS  ARM/THUMB
 ifeq		($(CODEGEN_AS),THUMB)
-ASFLAGS_ISET	:= -16
+ASFLAGS_ISET	:= -mthumb
 else
-ASFLAGS_ISET	:= -32
+ASFLAGS_ISET	:= -marm
 endif
 
-
-CCFLAGS_ARCH	?= $(CCFLAGS_PROC) $(CCFLAGS_ISET) -nopic -nopid -interworking
+CFLAGS_ARCH	?= $(CFLAGS_PROC) $(CFLAGS_ISET) -fPIC -mno-unaligned-access
 ASFLAGS_ARCH	?= $(ASFLAGS_PROC) $(ASFLAGS_ISET)
-LDFLAGS_ARCH	?= $(CCFLAGS_PROC) $(CCFLAGS_ISET) -nopic -nopid -interworking
-ARFLAGS_ARCH	?=
+LDFLAGS_ARCH	?= $(CFLAGS_PROC) $(CFLAGS_ISET) -fPIC -mno-unaligned-access
+ARFLAGS_ARCH	?= 
 
-#----------------------------------------------------------------------------
-#  standard includes/libraries for CodeWarrior
-#
 
-export	MWCIncludes    := $(subst \;, ,$(subst $(SPACE),;,$(call PATH_UNIX2DOS,$(CW_INCDIRS))))
-export	MWLibraries    := $(subst \;, ,$(subst $(SPACE),;,$(call PATH_UNIX2DOS,$(CW_LIBDIRS))))
-export	MWLibraryFiles := $(subst \;, ,$(subst $(SPACE),;,$(CW_LIBS)))
+# Standard includes/libraries for GCC
+export GCCIncludes    := $(subst \;, ,$(subst $(SPACE),;,$(call PATH_UNIX2DOS,$(GCC_INCDIRS))))
+export GCCLibraries    := $(subst \;, ,$(subst $(SPACE),;,$(call PATH_UNIX2DOS,$(GCC_LIBDIRS))))
+export GCCLibraryFiles := $(subst \;, ,$(subst $(SPACE),;,$(GCC_LIBS)))
 
-#----------------------------------------------------------------------------
-#  switch by C Compiler CW/SNC
-#
-
+# Switch by C Compiler GCC/SNC
 MACRO_FLAGS	+= -DSDK_$(NITRO_CCTYPE)
 
-
-#----------------------------------------------------------------------------
-#  switch by DEBUG/RELEASE/FINALROM
-#
-
+# Switch by DEBUG/RELEASE/FINALROM
 MACRO_FLAGS	+= -DSDK_$(NITRO_BUILD_TYPE)
 
 ifeq		($(NITRO_BUILD_TYPE),DEBUG)
 
-CCFLAGS_OPT	?= -O0 -inline off
+CFLAGS_OPT	?= -O0
 ASFLAGS_OPT	?=
 LDFLAGS_OPT	?=
 ARFLAGS_OPT	?=
 
 else
 
-CCFLAGS_OPT_O_	= -O4 -inline on,noauto
+CFLAGS_OPT_O_	= -O3
 
 ifeq		($(CODEGEN_PROC),ARM9)
-CCFLAGS_OPT_O_	+= -opt speed
+CFLAGS_OPT_O_	+= -march=armv5te -mtune=arm946e-s
 else
-CCFLAGS_OPT_O_	+= -opt space
+CFLAGS_OPT_O_	+= -Os
 endif
 
 ifeq		($(NITRO_BUILD_TYPE),FINALROM)
-CCFLAGS_OPT	?= $(CCFLAGS_OPT_O_)
+CFLAGS_OPT	?= $(CFLAGS_OPT_O_)
 ASFLAGS_OPT	?=
 LDFLAGS_OPT	?=
 ARFLAGS_OPT	?=
 else 	#	($(NITRO_BUILD_TYPE),RELEASE)	# (default)
-CCFLAGS_OPT	?= $(CCFLAGS_OPT_O_)
+CFLAGS_OPT	?= $(CFLAGS_OPT_O_)
 ASFLAGS_OPT	?=
 LDFLAGS_OPT	?=
 ARFLAGS_OPT	?=
@@ -752,41 +692,26 @@ endif
 endif
 
 ifndef		NITRO_NO_OPT_G
-CCFLAGS_OPT	+= -g
+CFLAGS_OPT	+= -g
 LDFLAGS_OPT	+= -g
 endif
 
-#--------CW2.0beta2 以降のバージョンではサイズ増大問題回避のため -ipa file オプションが必須
-ifeq		($(CW_MAJOR_VER),2)
-CCFLAGS_OPT	+= -ipa file
-endif
 
-
-#----------------------------------------------------------------------------
-#  switch for code profiling
-#
-
+# Switch for code profiling
 ifdef		NITRO_PROFILE
-CCFLAGS_OPT	+= -profile
+CFLAGS_OPT	+= -pg
 endif
 
 ifdef		NITRO_PROFILE_TYPE
-CCFLAGS_OPT	+= -DSDK_PROFILE_$(NITRO_PROFILE_TYPE)
+CFLAGS_OPT	+= -DSDK_PROFILE_$(NITRO_PROFILE_TYPE)
 endif
 
-
-#----------------------------------------------------------------------------
-#  switch for anti-thread policy
-#
-
+# Switch for anti-thread policy
 ifdef		NITRO_NO_THREAD
 MACRO_FLAGS	+= -DSDK_NO_THREAD
 endif
 
-
-#----------------------------------------------------------------------------
-#  switch for AUTOTEST/UNITTEST
-#
+# Switch for AUTOTEST/UNITTEST
 ifdef		NITRO_AUTOTEST
 MACRO_FLAGS	+= -DSDK_AUTOTEST
 endif
@@ -794,89 +719,49 @@ ifdef		NITRO_UTEST
 MACRO_FLAGS	+= -DSDK_UTEST
 endif
 
-#----------------------------------------------------------------------------
-#  Switch for using system call when SVC_WaitVBlankIntr
-#
+# Switch for using system call when SVC_WaitVBlankIntr
 ifdef		NITRO_SVC_WAITVBLANK_COMPATIBLE
 MACRO_FLAGS	+= -DSDK_SVC_WAITVBLANK_COMPATIBLE
 endif
 
-#----------------------------------------------------------------------------
-#  Switch for automatic PrintServer
-#
+# Switch for automatic PrintServer
 ifdef		NITRO_ENABLE_ARM7_PRINT
 MACRO_FLAGS	+= -DSDK_ENABLE_ARM7_PRINT
 endif
 
-
-#----------------------------------------------------------------------------
-#  switch for TS board
-#
-#	Default value of NITRO_TS_VERSION is defined in <nitro/spec.h>
-#
-#	NITRO_TS_VERSION = [0/100/200]
-#
-#      0 : Prototype breadboard ~ ISD-BOX Ver.C
-#    100 : ISD-BOX Ver.D
-#    200 : ISD-BOX Ver.E
-#
-#
+# Switch for TS board
 ifdef		NITRO_TS_VERSION
 MACRO_FLAGS	+= -DSDK_TS_VERSION=$(NITRO_TS_VERSION)
 endif
 
-
-#----------------------------------------------------------------------------
-#  my macro flags
-#
+# My macro flags
 MACRO_FLAGS	+= $(LMACRO_FLAGS)
 
+# Warning flags
+CFLAGS_WARNING	?= -Wall -Wextra -pedantic
 
-#----------------------------------------------------------------------------
-CCFLAGS_WARNING_FULL	= all,cmdline,illpragmas,emptydecl,possible,unusedarg,unusedvar,unused,extracomma,pedantic,hidevirtual,implicitconv,impl_int2float,impl_float2int,impl_signedunsigned,notinlined,largeargs,structclass,padding,notused,missingreturn,unusedexpr,ptrintconv,anyptrintconv,undefmacro,filecaps,sysfilecaps,tokenpasting
+# Encoding and character type flags
+CFLAGS_ENCODING	?= -finput-charset=ascii
+CFLAGS_CHARTYPE	?= -fsigned-char
 
-CCFLAGS_WARNING_NIGHTLY	= all,padding,notused,ptrintconv,undefmacro
+# Miscellaneous flags
+CFLAGS_MISC	= $(CFLAGS_WARNING) $(CFLAGS_ENCODING) $(CFLAGS_CHARTYPE)
+ASFLAGS_MISC	= $(CFLAGS_WARNING)
+LDFLAGS_MISC	= $(CFLAGS_WARNING)
+ARFLAGS_MISC	= $(CFLAGS_WARNING)
 
-CCFLAGS_MSGSTYLE	?= -msgstyle std
+# System flags
+CFLAGS_SYS	?= -std=c99 -fexceptions
+ASFLAGS_SYS	?= -DSDK_ASM
+LDFLAGS_SYS	?= 
+ARFLAGS_SYS	?= 
 
-ifdef	NITRO_WARNING_NIGHTLY
-CCFLAGS_WARNING		?= -w $(CCFLAGS_WARNING_NIGHTLY)
-endif
+# Compiler flags
+CFLAGS		= $(CFLAGS_ARCH) $(CFLAGS_OPT) $(CFLAGS_MISC) \
+		  $(CFLAGS_SYS)  $(MACRO_FLAGS) $(MACRO_FLAGS_CC)
 
-ifdef	NITRO_WARNING_STRICT
-CCFLAGS_WARNING		?= -w $(CCFLAGS_WARNING_FULL)
-else
-CCFLAGS_WARNING		?= -w all
-endif
-LDFLAGS_WARNING		?= -w on
-ARFLAGS_WARNING		?= -w on
-
-ifeq	($(NITROSDK_LANG),en)
-CCFLAGS_ENCODING	?= -enc ascii
-else
-CCFLAGS_ENCODING	?= -enc SJIS
-endif
-CCFLAGS_CHARTYPE	?= -char signed
-
-CCFLAGS_MISC	= $(CCFLAGS_MSGSTYLE) $(CCFLAGS_WARNING) $(CCFLAGS_ENCODING) $(CCFLAGS_CHARTYPE)
-ASFLAGS_MISC	= $(CCFLAGS_MSGSTYLE)
-LDFLAGS_MISC	= $(CCFLAGS_MSGSTYLE) $(LDFLAGS_WARNING)
-ARFLAGS_MISC	= $(CCFLAGS_MSGSTYLE) $(ARFLAGS_WARNING)
-
-
-#----------------------------------------------------------------------------
-
-CCFLAGS_SYS	?= -stdinc -enum int -stdkeywords off -Cpp_exceptions off
-ASFLAGS_SYS	?= -nostdinc -DSDK_ASM
-LDFLAGS_SYS	?= -stdlib -map closure -main _start
-ARFLAGS_SYS	?= -library
-
-
-CCFLAGS		= -lang c $(CCFLAGS_ARCH) $(CCFLAGS_OPT) $(CCFLAGS_MISC) \
-		  $(CCFLAGS_SYS)  $(MACRO_FLAGS) $(MACRO_FLAGS_CC)
-
-CXXFLAGS	= -lang c++ $(CCFLAGS_ARCH) $(CCFLAGS_OPT) $(CCFLAGS_MISC) \
-		  $(CCFLAGS_SYS)  $(MACRO_FLAGS) $(MACRO_FLAGS_CC)
+CXXFLAGS	= $(CFLAGS_ARCH) $(CFLAGS_OPT) $(CFLAGS_MISC) \
+		  $(CFLAGS_SYS)  $(MACRO_FLAGS) $(MACRO_FLAGS_CC)
 
 ASFLAGS		= $(ASFLAGS_ARCH) $(ASFLAGS_OPT) $(ASFLAGS_MISC) \
 		  $(ASFLAGS_SYS)  $(MACRO_FLAGS) $(MACRO_FLAGS_AS)
@@ -886,6 +771,3 @@ LDFLAGS		= $(LDFLAGS_ARCH) $(LDFLAGS_OPT) $(LDFLAGS_MISC) \
 
 ARFLAGS		= $(ARFLAGS_ARCH) $(ARFLAGS_OPT) $(ARFLAGS_MISC) \
 		  $(ARFLAGS_SYS)
-
-
-#----- End of commondefs.cctype.CW -----

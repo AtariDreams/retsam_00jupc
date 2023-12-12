@@ -241,9 +241,9 @@ ifeq ($(USERNAME), mituhara)
 #SUBDIRS_AFTER	= src/fielddata/eventdata
 SUBDIRS_BEFORE	= convert/message
 NITRO_NO_OPT_G = 0
-#%/agbpokemon.o : CCFLAGS_OPT	= -Op -g
-#%/agbpokemon.o : CCFLAGS_OPT	= -O0 -g
-#%/agbpoke_tool.o : CCFLAGS_OPT	= -O0 -g
+#%/agbpokemon.o : CFLAGS_OPT	= -Op -g
+#%/agbpokemon.o : CFLAGS_OPT	= -O0 -g
+#%/agbpoke_tool.o : CFLAGS_OPT	= -O0 -g
 endif
 
 #convert/message --> src/fielddata/script --> src/fielddata/eventdata‚Ì

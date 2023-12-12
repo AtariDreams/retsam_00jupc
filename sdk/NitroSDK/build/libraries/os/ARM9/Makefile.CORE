@@ -123,7 +123,7 @@ $(OBJDIR)/%.o: $(DATA_DIR)/%.bin
 
 #			$(CW_BINDIR)/BinToElf.exe $< -aligndata 4 -endian little -output $@
 
-$(OBJDIR)/os_reset.o: PCHDR_C_MCH := $(PCHDR_SRC)
+$(OBJDIR)/os_reset.o: PCHDR_C_PCH := $(PCHDR_SRC)
 $(OBJDIR)/os_reset.o: CW_VERSION := 2.0/sp1p2
 
 #===== End of Makefile =====
