@@ -299,9 +299,9 @@ u32 add_symbol(Object * obj, const char *symbol, u32 value, u32 size, u32 sectio
  *---------------------------------------------------------------------------*/
 static u32 section_add_string(Section * s, const char *string)
 {
-    int     new_size = s->size + strlen(string) + 1;
-    u8     *new_ptr;
-    int     size;
+    u32     new_size = s->size + strlen(string) + 1;
+    void     *new_ptr;
+    u32     size;
 
     if (NULL == (new_ptr = malloc(new_size)))
     {

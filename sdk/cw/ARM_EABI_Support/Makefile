@@ -73,12 +73,12 @@ NITRO_RUNTIME_DEPFILES := $(NITRO_RUNTIME_OBJECT_FILES:%.o=%.d)
 ifneq ($(WINPATH),)
   PROJECT_ROOT_NT := $(shell $(WINPATH) -w $(PROJECT_ROOT) | $(SED) 's/\\/\//g')
   define fixdep
-    $(SED) -i 's/\r//g; s/\\/\//g; s/\/$$/\\/g; s#$(PROJECT_ROOT_NT)#$(PROJECT_ROOT)#g' $(1)
+    $(SED) -i '' -e 's/\r//g; s/\\/\//g; s/\/$$/\\/g; s#$(PROJECT_ROOT_NT)#$(PROJECT_ROOT)#g' $(1)
     touch -r $(1:%.d=%.o) $(1)
   endef
 else
   define fixdep
-    $(SED) -i 's/\r//g; s/\\/\//g; s/\/$$/\\/g' $(1)
+    $(SED) -i '' -e 's/\r//g; s/\\/\//g; s/\/$$/\\/g' $(1)
     touch -r $(1:%.d=%.o) $(1)
   endef
 endif

@@ -110,7 +110,7 @@ do-build:		$(TARGETS)
 
 include	$(NITROWIFI_ROOT)/build/buildtools/modulerules
 
-ERRTABLE_H	= include/errtable.h
+ERRTABLE_H	=
 
 $(OBJDIR)/socl_misc.o:	$(ERRTABLE_H)
 

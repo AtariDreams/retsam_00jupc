@@ -1490,6 +1490,7 @@ static void WcmKeepAliveAlarm(void* arg)
   Returns:      u32     -   引数に含まれる 1 ビットの数を返す。0 ～ 32 の値。
  *---------------------------------------------------------------------------*/
 
+//TODO: replace with intrinsics later
 static asm u32
 WcmCountBits( u32 arg )
 {

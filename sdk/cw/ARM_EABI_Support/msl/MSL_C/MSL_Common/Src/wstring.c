@@ -750,7 +750,7 @@ wchar_t * _MSL_CDECL wcstok(wchar_t * _MSL_RESTRICT str, const wchar_t * _MSL_RE
 
 
 
-wchar_t * _MSL_CDECL wcsstr(const wchar_t * str, const wchar_t * pat)
+wchar_t * _MSL_CDECL wcsstr(const wchar_t * _MSL_RESTRICT str, const wchar_t * _MSL_RESTRICT pat)
 {
 #if !defined(__POWERPC__)
 
