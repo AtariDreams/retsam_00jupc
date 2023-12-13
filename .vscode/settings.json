@@ -25,6 +25,7 @@
         "slist": "c",
         "stack": "c",
         "tree": "c",
-        "valarray": "c"
+        "valarray": "c",
+        "spec.h": "c"
     }
 }

@@ -32,7 +32,7 @@ option is set to "on".  The prefix file is included inside a test for
 precompilation to match 3.0.x behavior:
 	 
 	 #if !__option(precompile)
-	 #include "PCHHeader.mch"	/* was: Prefix file */
+	 #include "PCHHeader.gch"	/* was: Prefix file */
 	 #endif
 
 The option "Source encoding" allows you to tell the compiler what the

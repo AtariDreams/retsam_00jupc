@@ -9,15 +9,15 @@
 
 #if __option(little_endian)
 	#ifndef __thumb
-		#pragma precompile_target "MSLHeaders_ARM_LE.mch"
+		#pragma precompile_target "MSLHeaders_ARM_LE.gch"
 	#else
-		#pragma precompile_target "MSLHeaders_Thumb_LE.mch"
+		#pragma precompile_target "MSLHeaders_Thumb_LE.gch"
 	#endif
 #else
 	#ifndef __thumb
-		#pragma precompile_target "MSLHeaders_ARM_BE.mch"
+		#pragma precompile_target "MSLHeaders_ARM_BE.gch"
 	#else
-		#pragma precompile_target "MSLHeaders_Thumb_BE.mch"
+		#pragma precompile_target "MSLHeaders_Thumb_BE.gch"
 	#endif
 #endif
 

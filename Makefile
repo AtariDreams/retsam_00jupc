@@ -672,7 +672,7 @@ binData: $(G3D_TARGETS)
 # precompile
 #----------------------------------------------------------------------------
 PRECOMPILE_SRC		 =	include/precompile/precompile.pch
-PRECOMPILE_CC_MCH	 =	$(OBJDIR)/precompile_cc.mch
+PRECOMPILE_CC_MCH	 =	$(OBJDIR)/precompile_cc.gch
 PRECOMPILE_CCFLAGS	:=	$(CCFLAGS)
 CCFLAGS			+=	-prefix $(PRECOMPILE_CC_MCH)
 ifeq	($(USERNAME),ohno)
@@ -685,7 +685,7 @@ precompile: $(PRECOMPILE_CC_MCH)
 $(PRECOMPILE_CC_MCH):	$(VER_FILE)
 
 -include $(PRECOMPILE_CC_MCH).d
-$(PRECOMPILE_CC_MCH):%_cc.mch:
+$(PRECOMPILE_CC_MCH):%_cc.gch:
 		$(CC) $(PRECOMPILE_CCFLAGS) $(INCLUDES) $(PRECOMPILE_SRC) -MD -x c-header -c $(PRECOMPILE_CC_MCH)
 		$(MOVE_SRC_DEPEND)
 		$(MV) $(DEPENDDIR)/$(*F).d $@.d

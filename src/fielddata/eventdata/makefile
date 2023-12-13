@@ -81,7 +81,7 @@ endef
 
 #PRECOMPILE_SRC		 =	ev_common.h	#precompile.pch
 PRECOMPILE_SRC		 =	precompile.pch
-PRECOMPILE_CC_MCH	 =	precompile_cc.mch
+PRECOMPILE_CC_MCH	 =	precompile_cc.gch
 PRECOMPILE_CCFLAGS	:=	$(CCFLAGS)
 #CCFLAGS			+=	-prefix $(PRECOMPILE_CC_MCH)
 INCLUDES		+=	-I$(NITROSDK_ROOT)/include
@@ -93,7 +93,7 @@ precompile: $(PRECOMPILE_CC_MCH)
 $(PRECOMPILE_CC_MCH):	$(VER_FILE)
 
 -include $(PRECOMPILE_CC_MCH).d
-$(PRECOMPILE_CC_MCH):%_cc.mch:
+$(PRECOMPILE_CC_MCH):%_cc.gch:
 		$(CC) $(PRECOMPILE_CCFLAGS) $(INCLUDES) $(PRECOMPILE_SRC) -MD -x c-header -c $(PRECOMPILE_CC_MCH)
 		$(MOVE_SRC_DEPEND)
 		$(MV) $(DEPENDDIR)/$(*F).d $@.d
