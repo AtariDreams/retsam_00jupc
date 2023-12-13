@@ -3310,12 +3310,10 @@ u16	PokeChrAbiCalc(u8 chr,u16 para,u8 cond)
 
 	switch(SeikakuAbiTbl[chr][cond-1]){
 		case 1:
-			ret=para*110;
-			ret/=100;
+			ret=para*11/10;
 			break;
 		case -1:
-			ret=para*90;
-			ret/=100;
+			ret=para*9/10;
 			break;
 		default:
 			ret=para;
